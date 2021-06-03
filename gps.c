@@ -15,6 +15,7 @@ volatile unsigned int buffer_index;
 volatile unsigned char  is_GGA = 0;
 char buffer[buffer_size];              
 char GGA[3];
+unsigned char is_N_or_S, is_E_or_W;
 
 char ReadData(void){
 
@@ -22,17 +23,13 @@ char ReadData(void){
     return ((char)(UART1_DR_R& 0xFF));
 }
 
-
-
 void  read_gps_data()
 {
-    unsigned char received_char;
+		unsigned char received_char;
     CommaCounter = 0;
     is_GGA = 0;
     do {
         received_char = ReadData();
-       
-
         if (received_char == '$') {           
             buffer_index = 0;
             is_GGA = 0;
@@ -59,3 +56,30 @@ void  read_gps_data()
         }
     } while (CommaCounter != 13);
 }
+
+
+//****************** compute distance **********************
+double degree_to_rad(double degree) {
+    return (degree * pi / 180);
+}
+
+double rad_to_degree(double rad) {
+    return (rad * 180 / pi);
+}
+
+double get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon) {
+    double theta, distance;
+    if ((current_lat == prev_lat) && (current_lon == prev_lon)) {
+        return 0;
+    }
+    else {
+        theta = current_lon - prev_lon;
+        distance = sin(degree_to_rad(current_lat)) * sin(degree_to_rad(prev_lat)) + cos(degree_to_rad(current_lat)) * cos(degree_to_rad(prev_lat)) * cos(degree_to_rad(theta));
+        distance = acos(distance);
+        distance = rad_to_degree(distance);
+        distance = distance * 60 * 1.1515;
+        return (distance);
+    }
+}
+
+
