@@ -57,6 +57,23 @@ void  read_gps_data()
     } while (CommaCounter != 13);
 }
 
+// ***************** get latitude value ******************
+float get_latitude(unsigned char lat_pointer)
+{
+    unsigned char lat_index = lat_pointer + 1;    
+    unsigned char index = 0;
+    char lat_buffer[15];
+    float latitude;
+    memset(lat_buffer, 0, 15);
+    for (; buffer[lat_index] != ','; lat_index++) {
+        lat_buffer[index] = buffer[lat_index];
+        index++;
+    }
+    lat_index++;
+    is_N_or_S = buffer[lat_index];
+    latitude = atof(lat_buffer);     
+    return latitude;                
+}
 
 //****************** get longitude ************************
 float get_longitude(unsigned char lon_pointer)
