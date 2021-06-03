@@ -8,7 +8,6 @@ void UART_Init(void){
 		UART1_LCRH_R = 0x00000070; 			//8 bits, no parity bits, one stop, FIFOs 
 		UART1_CTL_R |= 0x00000301;			//enable UART 
 		GPIO_PORTC_AFSEL_R |= 0x30;			//enable alternate fn on PORT C pins 4,5 & Tx & Rx
-		GPIO_PORTC_DEN_R |= 0x30;
 		GPIO_PORTC_PCTL_R = (GPIO_PORTC_PCTL_R & 0xFF00FFFF) + 0x00220000;  
 		GPIO_PORTC_AMSEL_R &= ~0x30;			//disable analog on Portc pins 4,5
 }
