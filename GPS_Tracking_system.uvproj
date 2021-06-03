@@ -415,6 +415,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>gps.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\gps.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
