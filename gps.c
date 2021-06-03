@@ -58,6 +58,26 @@ void  read_gps_data()
 }
 
 
+//****************** get longitude ************************
+float get_longitude(unsigned char lon_pointer)
+{
+    unsigned char lon_index;
+    unsigned char index = lon_pointer + 1;       
+    char long_buffer[15];
+    float longitude;
+    lon_index = 0;
+    memset(long_buffer, 0, 15);
+    for (; buffer[index] != ','; index++) {
+        long_buffer[lon_index] = buffer[index];
+        lon_index++;
+    }
+    lon_index++;
+    is_E_or_W = buffer[lon_index];
+    longitude = atof(long_buffer);    
+    return longitude;                 
+}
+
+
 //****************** compute distance **********************
 double degree_to_rad(double degree) {
     return (degree * pi / 180);
