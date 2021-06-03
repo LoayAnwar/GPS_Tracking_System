@@ -10,7 +10,7 @@ void SystemInit()
 }
 int __main (void)
 {
- 
+  read_gps_data();
 	if(total_distance > =100){
 	    Portf_output(0x02);
    }
