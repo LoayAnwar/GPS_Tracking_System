@@ -45,6 +45,10 @@ int __main (void)
         total_distance += distance;
         prev_lat = current_lat;
         prev_lon = current_lon;
+				
+	      if(total_distance > =100){
+	            Portf_output(0x02);
+          }
     }
 	
 	
