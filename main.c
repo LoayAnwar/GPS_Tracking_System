@@ -1,9 +1,13 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "tm4c123gh6pm.h"
 #include "DIO_DRIVER.h"
 #include "gps.h"
 #include "sysTick.h"
+
+extern uint8_t data_start[20]; 
+extern unsigned char is_N_or_S, is_E_or_W;
 
 void SystemInit()
 {
