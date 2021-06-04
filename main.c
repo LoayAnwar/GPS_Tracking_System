@@ -5,6 +5,7 @@
 #include "DIO_DRIVER.h"
 #include "gps.h"
 #include "sysTick.h"
+#include "LCDdriver.h"
 
 extern uint8_t data_start[20]; 
 extern unsigned char is_N_or_S, is_E_or_W;
@@ -54,7 +55,7 @@ int __main (void)
         prev_lon = current_lon;
 				
 				//send distance to be printed to lcd
-				LCD_write_str(total_distance_as_string);
+				lcd_write_str(total_distance_as_string);
 	      if(total_distance >= 100){
 	            Portf_output(0x02);
           }

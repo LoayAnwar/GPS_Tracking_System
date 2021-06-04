@@ -3,7 +3,7 @@ void delay_milli(int n);
 void delay_micro(int n);
 void LCD_init(void);
 void LCD_Cmd(unsigned char command);
-void LCD_Data(unsigned char data);
+void LCD_Data(char data);
 int main() {
 	LCD_init();
 	// while(1)
@@ -60,7 +60,7 @@ void LCD_Cmd(unsigned char command)
 	GPIOA->DATA = 0x00;
 	if (command < 4) delay_milli(2); else delay_micro(37);
 } 
-void LCD_Data(unsigned char data) {
+void LCD_Data(char data) {
 	GPIOA->DATA = 0x20; //RS=1, E=0,RW=0
 	GPIOB->DATA = data;
 	GPIOA->DATA |= 0x80;
@@ -68,7 +68,7 @@ void LCD_Data(unsigned char data) {
 	delay_micro(0);
 
 }
-void lcd_write_str(unsigned char *data) 
+void lcd_write_str(char *data) 
 {    
 	while (*data !='\0')
 		 { 
