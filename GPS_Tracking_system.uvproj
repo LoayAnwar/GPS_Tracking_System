@@ -415,6 +415,41 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>gps.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\gps.c</FilePath>
+            </File>
+            <File>
+              <FileName>sysTick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\sysTick.c</FilePath>
+            </File>
+            <File>
+              <FileName>UART1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UART1.c</FilePath>
+            </File>
+            <File>
+              <FileName>DIO_DRIVER.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DIO_DRIVER.c</FilePath>
+            </File>
+            <File>
+              <FileName>DIO_DRIVER.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DIO_DRIVER.h</FilePath>
+            </File>
+            <File>
+              <FileName>gps.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\gps.h</FilePath>
+            </File>
+            <File>
+              <FileName>sysTick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\sysTick.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

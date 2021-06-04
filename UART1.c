@@ -1,3 +1,4 @@
+#include "tm4c123gh6pm.h"
 void UART_Init(void){
 		
 		SYSCTL_RCGCUART_R |= 0x00000002;    //activate UART1

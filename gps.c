@@ -4,13 +4,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include "tm4c123gh6pm.h"
 
 #define buffer_size 80
 #define data_no 20
 #define pi 3.14159265358979323846
                       
-unsigned char data_start[data_no]; 
-char CommaCounter;
+uint8_t data_start[data_no]; 
+uint8_t CommaCounter;
 volatile unsigned int buffer_index;
 volatile unsigned char  is_GGA = 0;
 char buffer[buffer_size];              
@@ -18,14 +19,13 @@ char GGA[3];
 unsigned char is_N_or_S, is_E_or_W;
 
 char ReadData(void){
-
-    while(UART1_FR_R & 0x0010 != 0);
-    return ((char)(UART1_DR_R& 0xFF));
+    while((UART1_FR_R & 0x0010) != 0);
+    return ((char)(UART1_DR_R & 0xFF));
 }
 
 void  read_gps_data()
 {
-		unsigned char received_char;
+		char received_char;
     CommaCounter = 0;
     is_GGA = 0;
     do {
@@ -58,10 +58,10 @@ void  read_gps_data()
 }
 
 // ***************** get latitude value ******************
-float get_latitude(unsigned char lat_pointer)
+float get_latitude(uint8_t lat_pointer)
 {
-    unsigned char lat_index = lat_pointer + 1;    
-    unsigned char index = 0;
+    uint8_t lat_index = lat_pointer + 1;    
+    uint8_t index = 0;
     char lat_buffer[15];
     float latitude;
     memset(lat_buffer, 0, 15);
@@ -76,10 +76,10 @@ float get_latitude(unsigned char lat_pointer)
 }
 
 //****************** get longitude ************************
-float get_longitude(unsigned char lon_pointer)
+float get_longitude(uint8_t lon_pointer)
 {
-    unsigned char lon_index;
-    unsigned char index = lon_pointer + 1;       
+    uint8_t lon_index;
+    uint8_t index = lon_pointer + 1;       
     char long_buffer[15];
     float longitude;
     lon_index = 0;
