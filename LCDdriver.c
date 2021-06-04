@@ -70,11 +70,11 @@ void LCD_Data(unsigned char data) {
 }
 void lcd_write_str(unsigned char *data) 
 {    
-	  while (*data !='\0')
-	     { 
-					  LCD_Data(*data); 
-				    data++;           
-			 }
+	while (*data !='\0')
+		 { 
+					LCD_Data(*data); 
+					data++;           
+		 }
 }  
 
 void delay_milli(int n) {

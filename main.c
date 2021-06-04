@@ -21,7 +21,8 @@ int __main (void)
    float current_lat;
    float current_lon;
    float distance = 0;
-   float total_distance = 0;
+   unsigned int total_distance = 0;
+	 char total_distance_as_string[6];
    bool first_read = true;
 		
 	// **************** Read data from gps and compute distance ***************
@@ -47,9 +48,13 @@ int __main (void)
 				// convert distance from miles to km
         distance = distance * 1.609344;
         total_distance += distance;
+				// convert distance from int to string 
+				sprintf(total_distance_as_string, "%d", total_distance);
         prev_lat = current_lat;
         prev_lon = current_lon;
 				
+				//send distance to be printed to lcd
+				LCD_write_str(total_distance_as_string);
 	      if(total_distance >= 100){
 	            Portf_output(0x02);
           }
