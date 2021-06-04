@@ -22,8 +22,8 @@ void Portf_output(int data)
 
 void Portb_Init_output(void)
 {
-	SYSCTL_RCGCGPIO_R |=0x00000020;
-	while((SYSCTL_PRGPIO_R & 0X00000020)==0);
+	SYSCTL_RCGCGPIO_R |=0x00000002;
+	while((SYSCTL_PRGPIO_R & 0X00000002)==0);
 	GPIO_PORTB_LOCK_R=0x4C4F434B;
 	GPIO_PORTB_CR_R |= 0XFF;
 	GPIO_PORTB_DIR_R |= 0XFF;
@@ -38,8 +38,8 @@ void Portb_output(int data)
 }
 void Portd_Init_output(void)
 {
-	SYSCTL_RCGCGPIO_R |=0x00000020;
-	while((SYSCTL_PRGPIO_R & 0X00000020)==0);
+	SYSCTL_RCGCGPIO_R |=0x00000008;
+	while((SYSCTL_PRGPIO_R & 0X00000008)==0);
 	GPIO_PORTD_LOCK_R=0x4C4F434B;
 	GPIO_PORTD_CR_R |= 0X0F;
 	GPIO_PORTD_DIR_R |= 0X0F;

@@ -59,7 +59,8 @@ void LCD_Cmd(unsigned char command)
 	delay_micro(0);
 	GPIOA->DATA = 0x00;
 	if (command < 4) delay_milli(2); else delay_micro(37);
-} void LCD_Data(unsigned char data) {
+} 
+void LCD_Data(unsigned char data) {
 	GPIOA->DATA = 0x20; //RS=1, E=0,RW=0
 	GPIOB->DATA = data;
 	GPIOA->DATA |= 0x80;
@@ -67,6 +68,15 @@ void LCD_Cmd(unsigned char command)
 	delay_micro(0);
 
 }
+void lcd_write_str(unsigned char *data) 
+{    
+	               while (*data !='\0')
+	               { 
+					         LCD_Data(*data); 
+					         data++;           
+								 }
+}  
+
 void delay_milli(int n) {
 	int i, j;
 	for (i = 0; i < n; i++)
