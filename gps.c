@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
-#include "tm4c123gh6pm.h"
+//#include "tm4c123gh6pm.h"
+#include "UART1.h"
 
 #define buffer_size 80
 #define data_no 20
@@ -18,10 +19,7 @@ char buffer[buffer_size];
 char GGA[3];
 unsigned char is_N_or_S, is_E_or_W;
 
-char ReadData(void){
-    while((UART1_FR_R & 0x0010) != 0);
-    return ((char)(UART1_DR_R & 0xFF));
-}
+
 
 void  read_gps_data()
 {

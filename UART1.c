@@ -14,3 +14,7 @@ void UART_Init(void){
 		GPIO_PORTC_AMSEL_R &= ~0x30;			//disable analog on Portc pins 4,5
 }
 
+char ReadData(void){
+    while((UART1_FR_R & 0x0010) != 0);
+    return ((char)(UART1_DR_R & 0xFF));
+}
