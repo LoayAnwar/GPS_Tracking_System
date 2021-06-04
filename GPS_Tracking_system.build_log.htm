@@ -3,8 +3,50 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-F:\GPS_Tracking_System\GPS_Tracking_system.uvproj
+C:\Users\Dell\Documents\GitHub\GPS_Tracking_System\GPS_Tracking_system.uvproj
 Project File Date:  06/04/2021
 
 <h2>Output:</h2>
-Error: Could not load file 'F:\GPS_Tracking_System\GPS_Tracking_system.axf'. Debugger aborted !
+Build target 'Target 1'
+assembling startup_TM4C123.s...
+compiling main.c...
+DIO_DRIVER.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+gps.h(6): warning:  #1295-D: Deprecated declaration read_gps_data - give arg types
+  void read_gps_data();
+gps.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+sysTick.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c(44): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          distance = distance * 1.609344;
+main.c: 5 warnings, 0 errors
+compiling gps.c...
+UART1.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+gps.c: 1 warning, 0 errors
+compiling sysTick.c...
+sysTick.c(28): warning:  #1-D: last line of file ends without a newline
+  }
+sysTick.c: 1 warning, 0 errors
+compiling UART1.c...
+UART1.c(20): warning:  #1-D: last line of file ends without a newline
+  }
+UART1.c: 1 warning, 0 errors
+compiling DIO_DRIVER.c...
+DIO_DRIVER.c(53): warning:  #1-D: last line of file ends without a newline
+  }
+DIO_DRIVER.c: 1 warning, 0 errors
+compiling LCDdriver.c...
+LCDdriver.c(86): warning:  #1-D: last line of file ends without a newline
+  // OmarIbrahim
+LCDdriver.c: 1 warning, 0 errors
+linking...
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol data_start multiply defined (by gps.o and main.o).
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol is_N_or_S multiply defined (by gps.o and main.o).
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol is_E_or_W multiply defined (by gps.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 3 error messages.
+".\GPS_Tracking_system.axf" - 3 Error(s), 10 Warning(s).
+Target not created
