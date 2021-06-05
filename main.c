@@ -6,10 +6,20 @@
 #include "gps.h"
 #include "sysTick.h"
 #include "LCDdriver.h"
-
+unsigned int total_distance = 0;
 extern uint8_t data_start[20]; 
 extern unsigned char is_N_or_S, is_E_or_W;
 
+void distanceEqual100(int total_distance)
+{
+	if(total_distance >= 100){
+	            Portf_output(0x02);
+          }
+}
+void totalDistance (int distance)
+{
+	   total_distance += distance;
+}
 void SystemInit()
 {
 	
@@ -22,9 +32,9 @@ int __main (void)
    float current_lat;
    float current_lon;
    float distance = 0;
-   unsigned int total_distance = 0;
 	 char total_distance_as_string[6];
    bool first_read = true;
+	
 		
 	// **************** Read data from gps and compute distance ***************
 	while (1) {
@@ -48,17 +58,16 @@ int __main (void)
         distance = get_distance(current_lat, current_lon, prev_lat, prev_lon);
 				// convert distance from miles to km
         distance = distance * 1.609344;
-        total_distance += distance;
 				// convert distance from int to string 
+				totalDistance(distance);
 				sprintf(total_distance_as_string, "%d", total_distance);
         prev_lat = current_lat;
         prev_lon = current_lon;
-				
 				//send distance to be printed to lcd
 				lcd_write_str(total_distance_as_string);
-	      if(total_distance >= 100){
-	            Portf_output(0x02);
-          }
+				distanceEqual100(total_distance);
+				
+	      
     }
 	
 	
