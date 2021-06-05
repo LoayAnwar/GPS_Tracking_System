@@ -12,9 +12,10 @@ extern unsigned char is_N_or_S, is_E_or_W;
 
 void distanceEqual100(int total_distance)
 {
-	if(total_distance >= 100){
-	            Portf_output(0x02);
-          }
+	if(total_distance >= 100)
+		{
+			Portf_output(0x02);
+		}
 }
 void totalDistance (int distance)
 {
@@ -22,8 +23,13 @@ void totalDistance (int distance)
 }
 void SystemInit()
 {
-	
+	Portf_Init_input_Output();
+	Portd_Init_output();
+	Portb_Init_output();
+	sysTickInit();
+	LCD_init();
 }
+
 int __main (void)
 {
 
@@ -35,13 +41,17 @@ int __main (void)
 	 char total_distance_as_string[6];
    bool first_read = true;
 	
-		
+		int x ;
+		char* name ="loay" ;
+		LCD_DisplayString(name);	
 	// **************** Read data from gps and compute distance ***************
 	while (1) {
+		
+
+		/*	
         read_gps_data();
         current_lat = get_latitude(data_start[0]);
         current_lon = get_longitude(data_start[2]);
-
         if (is_N_or_S == 'S') {
             current_lat *= -1;
         }
@@ -58,18 +68,16 @@ int __main (void)
         distance = get_distance(current_lat, current_lon, prev_lat, prev_lon);
 				// convert distance from miles to km
         distance = distance * 1.609344;
+		*/
 				// convert distance from int to string 
-				totalDistance(distance);
-				sprintf(total_distance_as_string, "%d", total_distance);
-        prev_lat = current_lat;
-        prev_lon = current_lon;
+				//totalDistance(distance);
+				//sprintf(total_distance_as_string, "%d", total_distance);
+        //prev_lat = current_lat;
+        //prev_lon = current_lon;
 				//send distance to be printed to lcd
-				lcd_write_str(total_distance_as_string);
-				distanceEqual100(total_distance);
-				
-	      
+				//lcd_write_str(total_distance_as_string);
+				//distanceEqual100(total_distance);
     }
 	
 	
 }
-

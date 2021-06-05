@@ -1,9 +1,4 @@
 .\lcddriver.o: LCDdriver.c
-.\lcddriver.o: C:\Keil\ARM\Inc\TI\TM4C123\TM4C123.h
-.\lcddriver.o: C:\Keil\ARM\Inc\TI\TM4C123\TM4C123GH6PM.h
-.\lcddriver.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
-.\lcddriver.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
-.\lcddriver.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
-.\lcddriver.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
-.\lcddriver.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
-.\lcddriver.o: C:\Keil\ARM\Inc\TI\TM4C123\system_TM4C123.h
+.\lcddriver.o: TM4C123.h
+.\lcddriver.o: TM4C123GH6PM.h
+.\lcddriver.o: DIO_DRIVER.h

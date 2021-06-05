@@ -51,3 +51,4 @@ void Portd_output(int data)
 {
 	GPIO_PORTD_DATA_R =data;
 }
+

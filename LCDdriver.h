@@ -9,6 +9,6 @@ void LCD_init(void);
 void LCD_Cmd(unsigned char command);
 void LCD_Data(char data);
 void lcd_write_str(char* data);
-
-
+void LCD_DisplayString(char *string);
+void LCD_DisplayInt(int x);
 #endif //lcd.h 
