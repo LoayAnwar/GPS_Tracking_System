@@ -11,4 +11,5 @@ void LCD_Data(char data);
 void lcd_write_str(char* data);
 void LCD_DisplayString(char *string);
 void LCD_DisplayInt(int x);
+void LCD_intgerToString(int data);
 #endif //lcd.h 
