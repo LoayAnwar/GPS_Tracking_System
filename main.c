@@ -44,6 +44,7 @@ int __main (void)
 		int x ;
 		char* name ="loay" ;
 		LCD_DisplayString(name);	
+	       LCD_intgerToString(100);
 	// **************** Read data from gps and compute distance ***************
 	while (1) {
 		
