@@ -18,11 +18,11 @@ void sysTickWait(int delay)
 	
 }
 
-void sysTickWait10Ms(unsigned long  delay)
+void sysTickWait1Ms(unsigned long  delay)
 {
 	unsigned long i;
 	for( i=0 ;i<delay ;i++)
 	{
-		sysTickWait(80000);
+		sysTickWait(16000);
 	}
 }

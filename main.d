@@ -6,4 +6,4 @@
 .\main.o: DIO_DRIVER.h
 .\main.o: gps.h
 .\main.o: sysTick.h
-.\main.o: LCDdriver.h
+.\main.o: LCD_DRIVER.h

@@ -5,7 +5,7 @@
 #include "DIO_DRIVER.h"
 #include "gps.h"
 #include "sysTick.h"
-#include "LCDdriver.h"
+#include "LCD_DRIVER.h"
 unsigned int total_distance = 0;
 extern uint8_t data_start[20]; 
 extern unsigned char is_N_or_S, is_E_or_W;
@@ -26,8 +26,9 @@ void SystemInit()
 	Portf_Init_input_Output();
 	Portd_Init_output();
 	Portb_Init_output();
+	portE_init_output();
 	sysTickInit();
-	LCD_init();
+	Lcd_init();
 }
 
 int __main (void)
@@ -40,14 +41,24 @@ int __main (void)
    float distance = 0;
 	 char total_distance_as_string[6];
    bool first_read = true;
-	
-		int x ;
-		char* name ="loay" ;
-		LCD_DisplayString(name);	
+	char* name;
+	char* name_2;
+	char* name_3;
+		int total_distance = 101;
+		distanceEqual100(total_distance);
+		sprintf(total_distance_as_string, "%d", total_distance);
+		name ="Dist=";
+		name_2 =total_distance_as_string;
+		name_3 ="m";
+		LCD_DisplayString(name);
+		LCD_DisplayString(name_2);
+		LCD_DisplayString(name_3);
+
 	// **************** Read data from gps and compute distance ***************
 	while (1) {
 		
-
+		
+		
 		/*	
         read_gps_data();
         current_lat = get_latitude(data_start[0]);

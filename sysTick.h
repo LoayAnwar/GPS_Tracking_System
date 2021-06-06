@@ -4,6 +4,6 @@
 void sysTickInit(void);
 
 void sysTickWait(int delay) ;
-void sysTickWait10Ms(unsigned long  delay);
+void sysTickWait1Ms(unsigned long  delay);
 
 #endif
