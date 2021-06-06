@@ -7,6 +7,8 @@ void LCD_init(void);
 void LCD_Cmd(unsigned char command);
 void LCD_Data(char data);
 void LCD_DisplayString(char *string);
+void LCD_intgerToString(int data);
+
 
 void LCD_init(void) {
 	LCD_Cmd(0x38); //8-bits,2 display lines, 5x7 font
@@ -78,4 +80,12 @@ void LCD_DisplayInt(int x)
 		x /=10;
 		LCD_Data(s +'0');
 	}
+}
+
+
+void LCD_intgerToString(int data)
+{
+   char buff[16]; /* String to hold the ascii result */
+   itoa(data,buff,10); /* 10 for decimal */
+   LCD_displayString(buff);
 }
