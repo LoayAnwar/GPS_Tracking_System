@@ -7,7 +7,7 @@
 #include "sysTick.h"
 #include "LCD_DRIVER.h"
 #include "UART1.h"
-#define data_no 20
+#define data_no 80
 
 unsigned int total_distance = 0;
 float prev_lat=0;
@@ -74,7 +74,7 @@ while (1)
 		}
 
 		// get distance in miles
-			 get_distance(current_lat, current_lon, prev_lat, prev_lon ,&distance);
+	//		 get_distance(current_lat, current_lon, prev_lat, prev_lon ,&distance);
 		// convert distance from miles to km
 		
 		/*distance = distance * 1.609344;
