@@ -144,7 +144,7 @@
             <UsePdscDebugDescription>0</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>0</TargetSelection>
+          <TargetSelection>2</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -158,7 +158,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>BIN\lmidk-agdi.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -449,6 +449,21 @@
               <FileName>sysTick.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\sysTick.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_DRIVER.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\LCD_DRIVER.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_DRIVER.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\LCD_DRIVER.h</FilePath>
+            </File>
+            <File>
+              <FileName>UART1.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\UART1.h</FilePath>
             </File>
           </Files>
         </Group>

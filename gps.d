@@ -6,3 +6,4 @@
 .\gps.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
 .\gps.o: C:\Keil\ARM\ARMCC\bin\..\include\math.h
 .\gps.o: UART1.h
+.\gps.o: LCD_DRIVER.h

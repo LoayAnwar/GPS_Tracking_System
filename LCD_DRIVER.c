@@ -2,41 +2,40 @@
 #include "DIO_DRIVER.h"
 #include "sysTick.h"
 
-void LCD_WriteCommand(char Command) 
+void LCD_WriteCommand(char command) 
 {
-		Portd_output(0);//100
-		Portd_output(4);
-		Portb_output(Command);
-		PortE_output(Command>>4);
-		Portd_output(0);
-		sysTickWait1Ms(5);
-		Portd_output(4);
-		sysTickWait1Ms(5);
+	GPIO_PORTA_DATA_R &= ~(0xE0) ; 
+	GPIO_PORTB_DATA_R = command ;
+	GPIO_PORTA_DATA_R |= 0x40 ; 
+	sysTickWait1Ms(10) ;
+	GPIO_PORTA_DATA_R &= ~(0xE0) ; 
+	sysTickWait1Ms(10) ;
 
 
 }
 void LCD_WriteData(char data) 
 {
-		Portd_output(5);
-		Portb_output(data);
-		PortE_output(data>>4);
-		Portd_output(1);
-		sysTickWait1Ms(5);
-		Portd_output(5);
-		sysTickWait1Ms(5);
-
+	GPIO_PORTA_DATA_R |= 0x80  ; 
+	GPIO_PORTA_DATA_R &= ~(0x60); 
+	GPIO_PORTB_DATA_R = data;
+	GPIO_PORTA_DATA_R |= 0x40; 
+	sysTickWait1Ms(10) ;
+	GPIO_PORTA_DATA_R &= ~(0x60) ; 
+	sysTickWait1Ms(10) ;
 }
 
 void Lcd_init()
 {
-		sysTickWait1Ms(40);
-	LCD_WriteCommand(56);
-		sysTickWait1Ms(5);
-	LCD_WriteCommand(15);
-		sysTickWait1Ms(5);
-	LCD_WriteCommand(1);
-		sysTickWait1Ms(5);
-	LCD_WriteCommand(3);
+	LCD_WriteCommand(0X30);  
+	sysTickWait1Ms(10);
+	LCD_WriteCommand(0X38);  
+	sysTickWait1Ms(10);
+	LCD_WriteCommand(0X01);  
+	sysTickWait1Ms(10);
+	LCD_WriteCommand(0X0F);  //diplay is on
+  sysTickWait1Ms(40);
+  
+
 }
 void LCD_DisplayString(char *string)
 {

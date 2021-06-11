@@ -7,3 +7,4 @@
 .\main.o: gps.h
 .\main.o: sysTick.h
 .\main.o: LCD_DRIVER.h
+.\main.o: UART1.h

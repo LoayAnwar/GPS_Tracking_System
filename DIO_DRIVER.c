@@ -23,18 +23,24 @@ void Portf_output(int data)
 void Portb_Init_output(void)
 {
 	
-	SYSCTL_RCGCGPIO_R |=0x00000002;//100000
+	SYSCTL_RCGCGPIO_R |=0x00000002;
 	while((SYSCTL_PRGPIO_R & 0X00000002)==0);
-	GPIO_PORTB_DIR_R |= 0XFF;
 	GPIO_PORTB_DEN_R |= 0XFF;
-	GPIO_PORTB_DATA_R=0;		
+	GPIO_PORTB_DIR_R |= 0XFF;
+	GPIO_PORTB_AMSEL_R &= ~(0xFF) ;
+	GPIO_PORTB_AFSEL_R &= ~(0xFF) ;
+  GPIO_PORTB_PCTL_R  = 0 ;
+
 }
 
-void 	portE_init_output(){
-	SYSCTL_RCGCGPIO_R |= 0x00000010;
-	while((SYSCTL_PRGPIO_R & 0X00000010)==0);
-	GPIO_PORTE_DIR_R |= 0x0F;
-	GPIO_PORTE_DEN_R |= 0X0F;
+void 	porta_init_output(){
+	SYSCTL_RCGCGPIO_R |=0x00000001;
+	while((SYSCTL_PRGPIO_R & 0X00000001)==0);
+	GPIO_PORTA_DEN_R |= 0XE0;
+	GPIO_PORTA_DIR_R |= 0XE0;
+	GPIO_PORTA_AMSEL_R &= ~(0XE0) ;
+	GPIO_PORTA_AFSEL_R &= ~(0XE0) ;
+  GPIO_PORTA_PCTL_R &= 0x000FFFFF ;
 }
 
 void Portb_output(char data)
@@ -43,22 +49,9 @@ void Portb_output(char data)
 
 }
 
-void PortE_output(char data)
+void Porta_output(char data)
 {
-	GPIO_PORTE_DATA_R = data;
+	GPIO_PORTA_DATA_R = data;
 
 }
 
-void Portd_Init_output(void)
-{
-	SYSCTL_RCGCGPIO_R |=0x000000008;
-	while((SYSCTL_PRGPIO_R & 0X00000008)==0);
-	
-	GPIO_PORTD_DIR_R |= 0X0F;
-	GPIO_PORTD_DEN_R |= 0X0F;
-}
-
-void Portd_output(char data)
-{
-	GPIO_PORTD_DATA_R =data;
-}

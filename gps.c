@@ -5,27 +5,27 @@
 #include <stdbool.h>
 #include <math.h>
 #include "UART1.h"
-//#include "gps.h"
-
+#include "LCD_DRIVER.h"
 #define buffer_size 80
-#define data_no 20
 #define pi 3.14159265358979323846
                       
-uint8_t data_start[data_no]; 
 uint8_t CommaCounter;
 volatile unsigned int buffer_index;
 volatile unsigned char  is_GGA = 0;
 char buffer[buffer_size];              
 char GGA[3];
-unsigned char is_N_or_S, is_E_or_W;
 
-void read_gps_data()
+
+int i = 0;
+
+void read_gps_data(char* data_start )
 {
-		char received_char;
+	char received_char;		
+	received_char = ReadData_UART0();
     CommaCounter = 0;
     is_GGA = 0;
     do {
-        received_char = ReadData();
+        received_char = ReadData_UART0();
         if (received_char == '$') {           
             buffer_index = 0;
             is_GGA = 0;
@@ -54,10 +54,10 @@ void read_gps_data()
 }
 
 // ***************** get latitude value ******************
-float get_latitude(uint8_t lat_pointer)
+void get_latitude(int lat_pointer ,char * is_N_or_S,double* l)
 {
-    uint8_t lat_index = lat_pointer + 1;    
-    uint8_t index = 0;
+    int lat_index = lat_pointer + 1;    
+    int index = 0;
     char lat_buffer[15];
     float latitude;
     memset(lat_buffer, 0, 15);
@@ -66,16 +66,15 @@ float get_latitude(uint8_t lat_pointer)
         index++;
     }
     lat_index++;
-    is_N_or_S = buffer[lat_index];
-    latitude = atof(lat_buffer);     
-    return latitude;                
+    *is_N_or_S = buffer[lat_index];
+    *l = atof(lat_buffer);     
 }
 
 //****************** get longitude ************************
-float get_longitude(uint8_t lon_pointer)
+void get_longitude(int lon_pointer  ,char* is_E_or_W,double* l)
 {
-    uint8_t lon_index;
-    uint8_t index = lon_pointer + 1;       
+    int lon_index;
+    int index = lon_pointer + 1;       
     char long_buffer[15];
     float longitude;
     lon_index = 0;
@@ -85,34 +84,36 @@ float get_longitude(uint8_t lon_pointer)
         lon_index++;
     }
     lon_index++;
-    is_E_or_W = buffer[lon_index];
-    longitude = atof(long_buffer);    
-    return longitude;                 
+    *is_E_or_W = buffer[lon_index];
+    *l = atof(long_buffer);    
 }
 
 
 //****************** compute distance **********************
-double degree_to_rad(double degree) {
-    return (degree * pi / 180);
+void degree_to_rad(double* degree) {
+    *degree= ((*degree) * pi / 180);
 }
 
-double rad_to_degree(double rad) {
-    return (rad * 180 / pi);
+void rad_to_degree(double* rad) {
+    *rad= ((*rad) * 180 / pi);
 }
 
-double get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon) {
-    double theta, distance;
+void get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon ,double* distance) {
+   /*double theta;
     if ((current_lat == prev_lat) && (current_lon == prev_lon)) {
-        return 0;
+      *distance =0;  
     }
     else {
         theta = current_lon - prev_lon;
-        distance = sin(degree_to_rad(current_lat)) * sin(degree_to_rad(prev_lat)) + cos(degree_to_rad(current_lat)) * cos(degree_to_rad(prev_lat)) * cos(degree_to_rad(theta));
-        distance = acos(distance);
-        distance = rad_to_degree(distance);
-        distance = distance * 60 * 1.1515;
-        return (distance);
+				degree_to_rad(&current_lat) ;
+				degree_to_rad(&prev_lat);
+				degree_to_rad(&theta);
+        *distance = sin(current_lat) * sin(prev_lat) + cos(current_lat) * cos(prev_lat) * cos(theta);
+        *distance = acos(*distance);
+        rad_to_degree(distance);
+        *distance = *distance * 60 * 1.1515;
     }
+	*/
 }
 
 
