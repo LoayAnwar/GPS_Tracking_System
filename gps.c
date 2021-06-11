@@ -14,18 +14,34 @@ volatile unsigned int buffer_index;
 volatile unsigned char  is_GGA = 0;
 char buffer[buffer_size];              
 char GGA[3];
+char data_start[20]; 
 
+float current_lon;
+float current_lat;
+float prev_lon;
+float prev_lat;
+unsigned char is_N_or_S;
+unsigned char is_E_or_W;
+float distance;
+unsigned int total_distance = 0;
+
+float get_latitude(char lat_pointer);
+void compute_lat_lon();
+float get_longitude(char lon_pointer);
+double get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon);
+bool first = true;
 
 int i = 0;
 
-void read_gps_data(char* data_start )
+void read_gps_data()
 {
 	char received_char;		
-	received_char = ReadData_UART0();
+	//received_char = ReadData_UART0();
     CommaCounter = 0;
     is_GGA = 0;
     do {
-        received_char = ReadData_UART0();
+        //received_char = ReadData_UART0();
+				received_char = ReadData();
         if (received_char == '$') {           
             buffer_index = 0;
             is_GGA = 0;
@@ -51,13 +67,41 @@ void read_gps_data(char* data_start )
             GGA[2] = received_char;
         }
     } while (CommaCounter != 13);
+		compute_lat_lon();
+}
+
+//****************** compute lat and lon from gps *********
+void compute_lat_lon() {
+	current_lat = get_latitude (data_start[0]);
+	current_lon = get_longitude (data_start[2]);
+	if (is_N_or_S == 'S') {
+		current_lat *= -1;
+	}
+	if (is_E_or_W == 'W') {
+		current_lon *= -1;
+	}
+	if (first) {
+		prev_lat = current_lat;
+		prev_lon = current_lon;
+		first = false;
+	}
+	
+	distance = get_distance (current_lat, current_lon, prev_lat, prev_lon);
+	// to convert distance ftom Mile to KM
+	distance = distance * 1.609344;
+	// to convert distance from KM to Meter
+	distance = distance / 1000;
+	total_distance += distance;
+	
+	prev_lat = current_lat;
+	prev_lon = current_lon;
 }
 
 // ***************** get latitude value ******************
-void get_latitude(int lat_pointer ,char * is_N_or_S,double* l)
+float get_latitude(char lat_pointer)
 {
-    int lat_index = lat_pointer + 1;    
-    int index = 0;
+    unsigned char lat_index = lat_pointer + 1;    
+    unsigned char index = 0;
     char lat_buffer[15];
     float latitude;
     memset(lat_buffer, 0, 15);
@@ -66,54 +110,53 @@ void get_latitude(int lat_pointer ,char * is_N_or_S,double* l)
         index++;
     }
     lat_index++;
-    *is_N_or_S = buffer[lat_index];
-    *l = atof(lat_buffer);     
+    is_N_or_S = buffer[lat_index];
+    latitude = atof(lat_buffer); 
+		return latitude;
 }
 
 //****************** get longitude ************************
-void get_longitude(int lon_pointer  ,char* is_E_or_W,double* l)
+float get_longitude(char lon_pointer)
 {
-    int lon_index;
-    int index = lon_pointer + 1;       
+    unsigned char lon_index = lon_pointer + 1;
+    unsigned char index;       
     char long_buffer[15];
     float longitude;
     lon_index = 0;
     memset(long_buffer, 0, 15);
-    for (; buffer[index] != ','; index++) {
-        long_buffer[lon_index] = buffer[index];
-        lon_index++;
+    for (; buffer[lon_pointer] != ','; lon_pointer++) {
+        long_buffer[index] = buffer[lon_pointer];
+        index++;
     }
     lon_index++;
-    *is_E_or_W = buffer[lon_index];
-    *l = atof(long_buffer);    
+    is_E_or_W = buffer[lon_index];
+    longitude = atof(long_buffer);
+return longitude;    
 }
 
 
 //****************** compute distance **********************
-void degree_to_rad(double* degree) {
-    *degree= ((*degree) * pi / 180);
+double degree_to_rad(double degree) {
+    return degree= (degree * pi / 180);
 }
 
-void rad_to_degree(double* rad) {
-    *rad= ((*rad) * 180 / pi);
+double rad_to_degree(double rad) {
+    return rad= (rad * 180 / pi);
 }
 
-void get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon ,double* distance) {
-   /*double theta;
+double get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon) {
+    double theta, distance;
     if ((current_lat == prev_lat) && (current_lon == prev_lon)) {
-      *distance =0;  
+        return 0;
     }
     else {
         theta = current_lon - prev_lon;
-				degree_to_rad(&current_lat) ;
-				degree_to_rad(&prev_lat);
-				degree_to_rad(&theta);
-        *distance = sin(current_lat) * sin(prev_lat) + cos(current_lat) * cos(prev_lat) * cos(theta);
-        *distance = acos(*distance);
-        rad_to_degree(distance);
-        *distance = *distance * 60 * 1.1515;
+        distance = sin(degree_to_rad(current_lat)) * sin(degree_to_rad(prev_lat)) + cos(degree_to_rad(current_lat)) * cos(degree_to_rad(prev_lat)) * cos(degree_to_rad(theta));
+        distance = acos(distance);
+        distance = rad_to_degree(distance);
+        distance = distance * 60 * 1.1515;
+        return (distance);
     }
-	*/
 }
 
 

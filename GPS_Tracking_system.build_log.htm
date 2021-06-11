@@ -3,7 +3,53 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-D:\loay\GITHUB\GPS_Tracking_System\GPS_Tracking_system.uvproj
-Project File Date:  06/09/2021
+C:\Users\Dell\Documents\GitHub\GPS_Tracking_System\GPS_Tracking_system.uvproj
+Project File Date:  06/11/2021
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+DIO_DRIVER.h(8): warning:  #1295-D: Deprecated declaration porta_init_output - give arg types
+  void porta_init_output();
+DIO_DRIVER.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+gps.h(4): warning:  #1295-D: Deprecated declaration read_gps_data - give arg types
+  void read_gps_data();
+gps.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+sysTick.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+LCD_DRIVER.h(4): warning:  #1295-D: Deprecated declaration Lcd_init - give arg types
+  void Lcd_init();
+LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+UART1.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c: 8 warnings, 0 errors
+linking...
+Program Size: Code=15700 RO-data=1444 RW-data=52 ZI-data=636  
+".\GPS_Tracking_system.axf" - 0 Error(s), 8 Warning(s).
+(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+LCD_DRIVER.h(4): warning:  #1295-D: Deprecated declaration Lcd_init - give arg types
+  void Lcd_init();
+LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+gps.c(29): warning:  #1295-D: Deprecated declaration compute_lat_lon - give arg types
+  void compute_lat_lon();
+gps.c(91): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        distance = distance * 1.609344;
+gps.c: 5 warnings, 0 errors
+".\GPS_Tracking_system.axf" - 1 Error(s), 13 Warning(s).
+Target not created
+y defined (by gps.o and main.o).
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol prev_lat multiply defined (by gps.o and main.o).
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol prev_lon multiply defined (by gps.o and main.o).
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol current_lat multiply defined (by gps.o and main.o).
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol current_lon multiply defined (by gps.o and main.o).
+.\GPS_Tracking_system.axf: Error: L6200E: Symbol distance multiply defined (by gps.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 7 error messages.
+".\GPS_Tracking_system.axf" - 7 Error(s), 13 Warning(s).
+Target not created
