@@ -7,16 +7,16 @@
 #include "sysTick.h"
 #include "LCD_DRIVER.h"
 #include "UART1.h"
-#define data_no 20
+//#define data_no 20
 
-unsigned int total_distance = 0;
-float prev_lat=0;
-char data_start[data_no]; 
+//unsigned int total_distance = 0;
+//float prev_lat=0;
+//char data_start[data_no]; 
 
-  float prev_lon=0;
-  double current_lat=0;
-  double current_lon=0;
-  double distance =0;
+  //float prev_lon=0;
+  //double current_lat=0;
+  //double current_lon=0;
+  //double distance =0;
 	char total_distance_as_string[6];
   bool first_read = true;
 	char NS ,EW ;
@@ -27,10 +27,10 @@ void is_distance_greater_or_equal_to_100(int total_distance)
 			Portf_output(0x02);
 		}
 }
-void totalDistance (int distance)
+/*void totalDistance (int distance)
 {
 	   total_distance += distance;
-}
+}*/
 void SystemInit()
 {
 	Portf_Init_input_Output();
@@ -53,13 +53,13 @@ void __main (void)
 while (1) 
 	{	
 		LCD_WriteData('c');
-		read_gps_data(data_start);
+		read_gps_data();
 		LCD_WriteData('a');
-		get_latitude(data_start[0] ,&NS ,&current_lat);
-		get_longitude(data_start[2],&EW,&current_lat);
+		//get_latitude(data_start[0] ,&NS ,&current_lat);
+		//get_longitude(data_start[2],&EW,&current_lat);
 		LCD_WriteData('D');
 
-		if (NS == 'S') {
+		/*if (NS == 'S') {
 				current_lat *= -1 ;
 		}
 		
@@ -71,10 +71,10 @@ while (1)
 				prev_lat = current_lat;
 				prev_lon = current_lon;
 				first_read = false;
-		}
+		}*/
 
 		// get distance in miles
-			 get_distance(current_lat, current_lon, prev_lat, prev_lon ,&distance);
+			// get_distance(current_lat, current_lon, prev_lat, prev_lon ,&distance);
 		// convert distance from miles to km
 		
 		/*distance = distance * 1.609344;
