@@ -17,7 +17,7 @@ typedef struct {
 	long double current_lon;
 	long double prev_lat;
 	long double prev_lon;
-	unsigned int total_distance;
+	float total_distance;
 } gps_data;	
 
              
@@ -43,25 +43,25 @@ void read_gps_data()
 		volatile unsigned int buffer_index;
 		uint8_t  is_GGA = 0;
 		char GGA[3];
-		 data.buffer[0] = '1';
-		 data.buffer[1] = '2';
-		 data.buffer[2] = '3';
-		 data.buffer[3] = '4';
-		 data.buffer[4] = ',';
-		 data.buffer[5] = 'N';
-		 data.buffer[6] = 'n';
-		 data.buffer[7] = 'w';
-		 data.buffer[8] = 'a';
-		 data.buffer[9] = 'r';
-		data.data_start[0] =0;
-		data.data_start[2] =0;
+	char total_distance_in_string[6];
+		 //data.buffer[0] = '1';
+		// data.buffer[1] = '2';
+		// data.buffer[2] = '3';
+		// data.buffer[3] = '4';
+		// data.buffer[4] = ',';
+		// data.buffer[5] = 'N';
+		// data.buffer[6] = 'n';
+		// data.buffer[7] = 'w';
+		// data.buffer[8] = 'a';
+		// data.buffer[9] = 'r';
+		//data.data_start[0] =0;
+		//data.data_start[2] =0;
 
 
     is_GGA = 0;
     do {
         //received_char = ReadData_UART0();
 				received_char = ReadData();
-				//received_char = '$';
         if (received_char == '$') {           
             buffer_index = 0;
             is_GGA = 0;
@@ -70,7 +70,12 @@ void read_gps_data()
         else if (is_GGA == 1)
         {        
             if (received_char == ',')
+						{
                 data.data_start[CommaCounter++] = buffer_index;    
+						}
+						else 
+						{
+						}
             data.buffer[buffer_index++] = received_char;
         }
         else if (GGA[0] == 'G' && GGA[1] == 'G' && GGA[2] == 'A')
@@ -87,7 +92,11 @@ void read_gps_data()
             GGA[2] = received_char;
         }
     } while (CommaCounter != 13);
+		SendData_UART0('!');
 		compute_lat_lon();
+		sprintf(total_distance_in_string, "%f", data.total_distance);
+		LCD_WriteCommand(1);
+		LCD_DisplayString(total_distance_in_string);
 }
 
 //****************** compute lat and lon from gps *********
@@ -110,9 +119,8 @@ void compute_lat_lon() {
 	// to convert distance ftom Mile to KM
 	distance = distance * 1.609344;
 	// to convert distance from KM to Meter
-	distance = distance / 1000;
+	distance = distance * 1000;
 	data.total_distance += distance;
-	
 	data.prev_lat = data.current_lat;
 	data.prev_lon = data.current_lon;
 	

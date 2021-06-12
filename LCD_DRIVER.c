@@ -32,7 +32,7 @@ void Lcd_init()
 	sysTickWait1Ms(10);
 	LCD_WriteCommand(0X01);  
 	sysTickWait1Ms(10);
-	LCD_WriteCommand(0X0F);  //diplay is on
+	LCD_WriteCommand(0X0F);  
   sysTickWait1Ms(40);
   
 

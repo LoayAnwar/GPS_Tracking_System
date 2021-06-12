@@ -16,9 +16,10 @@ void UART_Init(void){
 }
 
 uint8_t ReadData(void){
+	char data;
     while((UART1_FR_R &0x0010) != 0);
-		LCD_WriteData((char)(UART1_DR_R & 0xFF));
-		return ((uint8_t)(UART1_DR_R & 0xFF));
+	 data =((uint8_t)(UART1_DR_R & 0xFF));
+		return data;
 }
 
 void UART0_Init(void){
@@ -47,7 +48,7 @@ char ReadData_UART0(void){
 	data =(char)(UART0_DR_R & 0xFF);
 	LCD_WriteData(data);
 	SendData_UART0(data);
-	return ((char)(UART0_DR_R & 0xFF));
+	return data;
 		
 }
 void sendString_Uart0(char* string)

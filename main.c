@@ -52,10 +52,10 @@ int main ()
 	// **************** Read data from gps and compute distance ***************
 while (1) 
 	{	
-		Erase();
-		LCD_WriteData('c');
-		//read_gps_data();
-		LCD_WriteData('a');
+		//Erase();
+		read_gps_data();
+		
+		/*LCD_WriteData('a');
 		writeData(ha);
 		set_block_and_offset(0,0);
 		ha= readData();
@@ -65,7 +65,7 @@ while (1)
 		//get_longitude(data_start[2],&EW,&current_lat);
 		LCD_WriteData('D');
 
-		/*if (NS == 'S') {
+		if (NS == 'S') {
 				current_lat *= -1 ;
 		}
 		
