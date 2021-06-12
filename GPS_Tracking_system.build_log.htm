@@ -3,7 +3,7 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\Dell\Documents\GitHub\GPS_Tracking_System\Gps_Tracking_System.uvproj
+D:\loay\GITHUB\GPS_Tracking_System\GPS_Tracking_system.uvproj
 Project File Date:  06/12/2021
 
 <h2>Output:</h2>
@@ -23,6 +23,10 @@ DIO_DRIVER.h(8): warning:  #1295-D: Deprecated declaration porta_init_output - g
   void porta_init_output();
 DIO_DRIVER.h(11): warning:  #1-D: last line of file ends without a newline
   #endif
+gps.h(4): warning:  #1295-D: Deprecated declaration read_gps_data - give arg types
+  void read_gps_data();
+gps.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
 sysTick.h(9): warning:  #1-D: last line of file ends without a newline
   #endif
 LCD_DRIVER.h(4): warning:  #1295-D: Deprecated declaration Lcd_init - give arg types
@@ -31,11 +35,17 @@ LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
 UART1.h(10): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c(57): warning:  #223-D: function "read_gps_data" declared implicitly
-                read_gps_data();
-main.c(41): warning:  #177-D: variable "lat_buffer_" was declared but never referenced
+EEPROM.h(3): warning:  #1295-D: Deprecated declaration EEPROM_Init - give arg types
+  void EEPROM_Init();
+EEPROM.h(4): warning:  #1295-D: Deprecated declaration Erase - give arg types
+  void Erase();
+EEPROM.h(7): warning:  #1295-D: Deprecated declaration readData - give arg types
+  long double readData();
+EEPROM.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c(42): warning:  #177-D: variable "lat_buffer_" was declared but never referenced
         char lat_buffer_[15];
-main.c: 8 warnings, 0 errors
+main.c: 13 warnings, 0 errors
 compiling sysTick.c...
 sysTick.c(28): warning:  #1-D: last line of file ends without a newline
   }
@@ -64,6 +74,15 @@ gps.c(39): warning:  #177-D: variable "a" was declared but never referenced
 gps.c(97): warning:  #177-D: variable "ay" was declared but never referenced
         char ay = data.buffer[0];
 gps.c: 7 warnings, 0 errors
+compiling EEPROM.c...
+EEPROM.c(61): warning:  #1-D: last line of file ends without a newline
+  }
+EEPROM.c: 1 warning, 0 errors
 linking...
-Program Size: Code=15072 RO-data=856 RW-data=4 ZI-data=1268  
-".\Gps_Tracking_System.axf" - 0 Error(s), 22 Warning(s).
+Program Size: Code=10460 RO-data=472 RW-data=0 ZI-data=1136  
+".\Gps_Tracking_System.axf" - 0 Error(s), 28 Warning(s).
+Load "D:\\loay\\GITHUB\\GPS_Tracking_System\\Gps_Tracking_System.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
