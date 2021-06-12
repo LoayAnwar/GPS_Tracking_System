@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "tm4c123gh6pm.h"
 #include "DIO_DRIVER.h"
-#include "gps.h"
+//#include "gps.h"
 #include "sysTick.h"
 #include "LCD_DRIVER.h"
 #include "UART1.h"
@@ -20,6 +20,9 @@
 	char total_distance_as_string[6];
   bool first_read = true;
 	char NS ,EW ;
+	char *ptr;
+
+	
 void is_distance_greater_or_equal_to_100(int total_distance)
 {
 	if(total_distance >= 100)
@@ -31,8 +34,11 @@ void is_distance_greater_or_equal_to_100(int total_distance)
 {
 	   total_distance += distance;
 }*/
-void SystemInit()
+
+long double a; 
+int __main (void)
 {
+	char lat_buffer_[15];
 	Portf_Init_input_Output();
 	Portb_Init_output();
 	porta_init_output();
@@ -42,23 +48,25 @@ void SystemInit()
 	UART0_Init();
 	SendData_UART0('0');
 	LCD_WriteData('a');
-
-}
-
-void __main (void)
-{
-		LCD_WriteData('a');
-
+	LCD_WriteData('a');
 	// **************** Read data from gps and compute distance ***************
 while (1) 
 	{	
+		
 		LCD_WriteData('c');
-		read_gps_data();
+		//read_gps_data(lat_buffer_);
 		LCD_WriteData('a');
 		//get_latitude(data_start[0] ,&NS ,&current_lat);
 		//get_longitude(data_start[2],&EW,&current_lat);
 		LCD_WriteData('D');
 
+		 lat_buffer_[0] = '1';
+		 lat_buffer_[1] = '2';
+		 lat_buffer_[2] = '3';
+		 lat_buffer_[3] = '4';
+		 lat_buffer_[4] = '\0';
+		
+		a = strtold(lat_buffer_, &ptr);
 		/*if (NS == 'S') {
 				current_lat *= -1 ;
 		}
