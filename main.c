@@ -3,10 +3,11 @@
 #include <stdbool.h>
 #include "tm4c123gh6pm.h"
 #include "DIO_DRIVER.h"
-//#include "gps.h"
+#include "gps.h"
 #include "sysTick.h"
 #include "LCD_DRIVER.h"
 #include "UART1.h"
+#include "EEPROM.h"
 //#define data_no 20
 
 //unsigned int total_distance = 0;
@@ -17,7 +18,7 @@
   //double current_lat=0;
   //double current_lon=0;
   //double distance =0;
-char total_distance_as_string[6];
+char total_distance_as_string[15];
 bool first_read = true;
 char NS ,EW ;
 char *ptr;
@@ -39,6 +40,7 @@ void is_distance_greater_or_equal_to_100(int total_distance)
 int main ()
 {
 	char lat_buffer_[15];
+	long double ha =1.1;
 	Portf_Init_input_Output();
 	Portb_Init_output();
 	porta_init_output();
@@ -46,16 +48,19 @@ int main ()
 	Lcd_init();
 	UART_Init();
 	UART0_Init();
-	SendData_UART0('0');
-	LCD_WriteData('a');
-	LCD_WriteData('a');
+	EEPROM_Init();
 	// **************** Read data from gps and compute distance ***************
 while (1) 
 	{	
-		
+		Erase();
 		LCD_WriteData('c');
-		read_gps_data();
+		//read_gps_data();
 		LCD_WriteData('a');
+		writeData(ha);
+		set_block_and_offset(0,0);
+		ha= readData();
+		sprintf(total_distance_as_string, "%Lf", ha);
+		sendString_Uart0(total_distance_as_string);
 		//get_latitude(data_start[0] ,&NS ,&current_lat);
 		//get_longitude(data_start[2],&EW,&current_lat);
 		LCD_WriteData('D');

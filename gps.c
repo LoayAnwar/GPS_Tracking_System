@@ -37,7 +37,7 @@ void read_gps_data()
 {
 		//gps_data data;
 		long double a;
-		char received_char;		
+		uint8_t received_char;		
 	//received_char = ReadData_UART0();
 		uint8_t CommaCounter = 0;
 		volatile unsigned int buffer_index;
@@ -59,9 +59,7 @@ void read_gps_data()
 
     is_GGA = 0;
     do {
-        //received_char = ReadData_UART0();
-				received_char = ReadData();
-				//received_char = '$';
+				received_char = ReadData();		
         if (received_char == '$') {           
             buffer_index = 0;
             is_GGA = 0;
