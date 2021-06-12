@@ -31,6 +31,7 @@ long double get_latitude(unsigned char lat_pointer);
 void compute_lat_lon();
 long double get_longitude(unsigned char lat_pointer);
 long double get_distance();
+double distanceBetween();
 bool first = true;
 
 void read_gps_data()
@@ -115,7 +116,8 @@ void compute_lat_lon() {
 		first = false;
 	}
 
-	distance = get_distance();
+	//distance = get_distance();
+	distance = distanceBetween();
 	// to convert distance ftom Mile to KM
 	distance = distance * 1.609344;
 	// to convert distance from KM to Meter
@@ -195,4 +197,38 @@ long double get_distance() {
         distance = distance * 60 * 1.1515;
         return (distance);
     }
+}
+
+long double toRadians(const long double degree)
+{
+    // cmath library in C++
+    // defines the constant
+    // M_PI as the value of
+    // pi accurate to 1e-30
+    long double one_deg = (pi) / 180;
+    return (one_deg * degree);
+}
+double distanceBetween()
+{
+  // returns distance in meters between two positions, both specified
+  // as signed decimal-degrees latitude and longitude. Uses great-circle
+  // distance computation for hypothetical sphere of radius 6372795 meters.
+  // Because Earth is no exact sphere, rounding errors may be up to 0.5%.
+  // Courtesy of Maarten Lamers
+  double delta = toRadians(data.current_lon-data.prev_lon);
+  double sdlong = sin(delta);
+  double cdlong = cos(delta);
+  data.current_lat = toRadians(data.current_lat);
+  data.prev_lat = toRadians(data.prev_lat);
+  double slat1 = sin(data.current_lat);
+  double clat1 = cos(data.current_lat);
+  double slat2 = sin(data.prev_lat);
+  double clat2 = cos(data.prev_lat);
+  delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
+  delta = (delta*delta);
+  delta += ((clat2 * sdlong)*(clat2 * sdlong));
+  delta = sqrt(delta);
+  double denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
+  delta = atan2(delta, denom);
+  return delta * 6372795;
 }
