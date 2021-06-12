@@ -215,20 +215,28 @@ double distanceBetween()
   // distance computation for hypothetical sphere of radius 6372795 meters.
   // Because Earth is no exact sphere, rounding errors may be up to 0.5%.
   // Courtesy of Maarten Lamers
-  double delta = toRadians(data.current_lon-data.prev_lon);
-  double sdlong = sin(delta);
-  double cdlong = cos(delta);
+	double delta;
+	double sdlong;
+	double cdlong;
+	double slat1;
+	double clat1;
+	double slat2;
+	double clat2;
+	double denom;
+  delta = toRadians(data.current_lon-data.prev_lon);
+  sdlong = sin(delta);
+  cdlong = cos(delta);
   data.current_lat = toRadians(data.current_lat);
   data.prev_lat = toRadians(data.prev_lat);
-  double slat1 = sin(data.current_lat);
-  double clat1 = cos(data.current_lat);
-  double slat2 = sin(data.prev_lat);
-  double clat2 = cos(data.prev_lat);
+  slat1 = sin(data.current_lat);
+  clat1 = cos(data.current_lat);
+   slat2 = sin(data.prev_lat);
+  clat2 = cos(data.prev_lat);
   delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
   delta = (delta*delta);
   delta += ((clat2 * sdlong)*(clat2 * sdlong));
   delta = sqrt(delta);
-  double denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
+  denom = (slat1 * slat2) + (clat1 * clat2 * cdlong);
   delta = atan2(delta, denom);
   return delta * 6372795;
 }

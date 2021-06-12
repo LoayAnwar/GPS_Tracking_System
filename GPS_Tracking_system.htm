@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Gps_Tracking_System.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Gps_Tracking_System.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat Jun 12 21:07:07 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat Jun 12 21:50:24 2021
 <BR><P>
 <H3>Maximum Stack Usage =        576 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -797,10 +797,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_errno_addr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
+<BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ldexp
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_tofloat
 </UL>
@@ -810,10 +809,10 @@ Global Symbols
 <P><STRONG><a name="[ab]"></a>_printf_fp_dec_real</STRONG> (Thumb, 628 bytes, Stack size 104 bytes, _printf_fp_dec.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = _printf_fp_dec_real &rArr; _fp_digits &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_infnan
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_infnan
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec
 </UL>
@@ -938,8 +937,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f9]"></a>strcmp</STRONG> (Thumb, 128 bytes, Stack size 0 bytes, strcmpv7m.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
+<BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
 <P><STRONG><a name="[bd]"></a>_scanf_really_hex_real</STRONG> (Thumb, 776 bytes, Stack size 80 bytes, scanf_hexfp.o(.text))
@@ -1025,8 +1024,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_div_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
 </UL>
 
 <P><STRONG><a name="[b6]"></a>_btod_edivd</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, btod.o(CL$$btod_edivd))
@@ -1044,8 +1043,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_mult_common
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
 </UL>
 
 <P><STRONG><a name="[b5]"></a>_btod_emuld</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, btod.o(CL$$btod_emuld))
@@ -1128,6 +1127,7 @@ Global Symbols
 
 <P><STRONG><a name="[ac]"></a>__ARM_fpclassify</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, fpclassify.o(i.__ARM_fpclassify))
 <BR><BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
 </UL>
 
@@ -1169,7 +1169,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
 </UL>
 
 <P><STRONG><a name="[d7]"></a>__kernel_sin</STRONG> (Thumb, 224 bytes, Stack size 64 bytes, sin_i.o(i.__kernel_sin))
@@ -1192,6 +1192,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ldexp
 </UL>
 
@@ -1228,20 +1229,32 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_scanf_really_real
 </UL>
 
-<P><STRONG><a name="[df]"></a>acos</STRONG> (Thumb, 586 bytes, Stack size 40 bytes, acos.o(i.acos))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = acos &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
+<P><STRONG><a name="[df]"></a>atan</STRONG> (Thumb, 478 bytes, Stack size 40 bytes, atan.o(i.atan))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = atan &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
+<BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
+<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
+</UL>
+
+<P><STRONG><a name="[e1]"></a>atan2</STRONG> (Thumb, 346 bytes, Stack size 32 bytes, atan2.o(i.atan2))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = atan2 &rArr; atan &rArr; __kernel_poly &rArr; __aeabi_dmul
+</UL>
+<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 </UL>
 
 <P><STRONG><a name="[e2]"></a>compute_lat_lon</STRONG> (Thumb, 172 bytes, Stack size 40 bytes, gps.o(i.compute_lat_lon))
@@ -1253,7 +1266,7 @@ Global Symbols
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_longitude
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_latitude
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_gps_data
 </UL>
@@ -1268,16 +1281,22 @@ Global Symbols
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 </UL>
 
-<P><STRONG><a name="[e8]"></a>degree_to_rad</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, gps.o(i.degree_to_rad))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = degree_to_rad &rArr; __aeabi_dmul
+<P><STRONG><a name="[e5]"></a>distanceBetween</STRONG> (Thumb, 414 bytes, Stack size 96 bytes, gps.o(i.distanceBetween))
+<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = distanceBetween &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;toRadians
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
+<BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;compute_lat_lon
 </UL>
 
 <P><STRONG><a name="[da]"></a>frexp</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, frexp.o(i.frexp))
@@ -1286,22 +1305,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_tofloat
-</UL>
-
-<P><STRONG><a name="[e5]"></a>get_distance</STRONG> (Thumb, 296 bytes, Stack size 80 bytes, gps.o(i.get_distance))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = get_distance &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
-</UL>
-<BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmpeq
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rad_to_degree
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree_to_rad
-</UL>
-<BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;compute_lat_lon
 </UL>
 
 <P><STRONG><a name="[e3]"></a>get_latitude</STRONG> (Thumb, 100 bytes, Stack size 48 bytes, gps.o(i.get_latitude))
@@ -1356,16 +1359,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ea]"></a>rad_to_degree</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, gps.o(i.rad_to_degree))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = rad_to_degree &rArr; __aeabi_dmul
-</UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-</UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
-</UL>
-
-<P><STRONG><a name="[f4]"></a>read_gps_data</STRONG> (Thumb, 186 bytes, Stack size 40 bytes, gps.o(i.read_gps_data))
+<P><STRONG><a name="[f4]"></a>read_gps_data</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, gps.o(i.read_gps_data))
 <BR><BR>[Stack]<UL><LI>Max Depth = 576 + Unknown Stack Size
 <LI>Call Chain = read_gps_data &rArr; compute_lat_lon &rArr; get_longitude &rArr; strtold &rArr; __strtod_int &rArr; _local_sscanf &rArr; _scanf_real &rArr; _scanf_really_real &rArr; _fp_value &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
@@ -1390,16 +1384,16 @@ Global Symbols
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 </UL>
 
-<P><STRONG><a name="[e1]"></a>sqrt</STRONG> (Thumb, 76 bytes, Stack size 24 bytes, sqrt.o(i.sqrt))
+<P><STRONG><a name="[ea]"></a>sqrt</STRONG> (Thumb, 76 bytes, Stack size 24 bytes, sqrt.o(i.sqrt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 </UL>
-<BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 </UL>
 
 <P><STRONG><a name="[eb]"></a>strtold</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, strtold.o(i.strtold))
@@ -1427,6 +1421,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lcd_init
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteData
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_WriteCommand
+</UL>
+
+<P><STRONG><a name="[e8]"></a>toRadians</STRONG> (Thumb, 28 bytes, Stack size 24 bytes, gps.o(i.toRadians))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = toRadians &rArr; __aeabi_dmul
+</UL>
+<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 </UL>
 
 <P><STRONG><a name="[92]"></a>_get_lc_numeric</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_numeric_c.o(locale$$code))
@@ -1465,8 +1467,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;compute_lat_lon
 </UL>
 
@@ -1483,18 +1486,17 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[104]"></a>__fpl_dcmp_Inf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dcmpi.o(x$fpl$dcmpinf), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<BR><BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
 </UL>
 
 <P><STRONG><a name="[e0]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
+<BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rad_to_degree
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree_to_rad
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
 </UL>
 
 <P><STRONG><a name="[102]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv), UNUSED)
@@ -1505,8 +1507,7 @@ Global Symbols
 <P><STRONG><a name="[db]"></a>__aeabi_cdcmpeq</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, deqf.o(x$fpl$deqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_cdcmpeq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ldexp
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ldexp
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_tofloat
 </UL>
 
@@ -1556,11 +1557,10 @@ Global Symbols
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rad_to_degree
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;toRadians
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_latitude
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree_to_rad
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;compute_lat_lon
 </UL>
 
@@ -1572,14 +1572,14 @@ Global Symbols
 <P><STRONG><a name="[fc]"></a>__fpl_dnaninf</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, dnaninf.o(x$fpl$dnaninf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __fpl_dnaninf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dmul
+<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dmul
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmpeq
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ddiv
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsub
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2f
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dfix
 </UL>
 
@@ -1606,7 +1606,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
 </UL>
 
 <P><STRONG><a name="[10a]"></a>_drsb</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, daddsub_clz.o(x$fpl$drsb), UNUSED)
@@ -1619,7 +1620,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
+<BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
 </UL>
 
 <P><STRONG><a name="[cd]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
@@ -1628,8 +1629,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_distance
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distanceBetween
 </UL>
 
 <P><STRONG><a name="[10c]"></a>_dsub</STRONG> (Thumb, 464 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub), UNUSED)
@@ -1691,9 +1693,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acos
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ldexp
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;frexp
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
@@ -1743,11 +1745,11 @@ Local Symbols
 <P><STRONG><a name="[a5]"></a>_fp_digits</STRONG> (Thumb, 426 bytes, Stack size 96 bytes, _printf_fp_dec.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = _fp_digits &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
+<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ll_udiv10
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_ediv
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_d2e
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ll_udiv10
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
 </UL>
@@ -1766,10 +1768,10 @@ Local Symbols
 <P><STRONG><a name="[b4]"></a>_fp_value</STRONG> (Thumb, 504 bytes, Stack size 88 bytes, scanf_fp.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = _fp_value &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emuld
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_errno_addr
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emuld
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_edivd
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_errno_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_scanf_really_real
 </UL>
