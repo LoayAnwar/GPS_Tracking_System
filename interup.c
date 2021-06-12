@@ -1,7 +1,7 @@
 #include "tm4c123gh6pm.h"
 
 void EnableInterrupts(){
-
+  NVIC_DBG_XFER_REG_CFBP &= ~0x01; 
 }
 
 void EdgeCounter_Init(void){
