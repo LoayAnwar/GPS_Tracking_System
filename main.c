@@ -17,11 +17,11 @@
   //double current_lat=0;
   //double current_lon=0;
   //double distance =0;
-	char total_distance_as_string[6];
-  bool first_read = true;
-	char NS ,EW ;
-	char *ptr;
-
+char total_distance_as_string[6];
+bool first_read = true;
+char NS ,EW ;
+char *ptr;
+long double a; 
 	
 void is_distance_greater_or_equal_to_100(int total_distance)
 {
@@ -35,8 +35,8 @@ void is_distance_greater_or_equal_to_100(int total_distance)
 	   total_distance += distance;
 }*/
 
-long double a; 
-int __main (void)
+
+int main ()
 {
 	char lat_buffer_[15];
 	Portf_Init_input_Output();
@@ -54,19 +54,12 @@ while (1)
 	{	
 		
 		LCD_WriteData('c');
-		//read_gps_data(lat_buffer_);
+		read_gps_data();
 		LCD_WriteData('a');
 		//get_latitude(data_start[0] ,&NS ,&current_lat);
 		//get_longitude(data_start[2],&EW,&current_lat);
 		LCD_WriteData('D');
 
-		 lat_buffer_[0] = '1';
-		 lat_buffer_[1] = '2';
-		 lat_buffer_[2] = '3';
-		 lat_buffer_[3] = '4';
-		 lat_buffer_[4] = '\0';
-		
-		a = strtold(lat_buffer_, &ptr);
 		/*if (NS == 'S') {
 				current_lat *= -1 ;
 		}

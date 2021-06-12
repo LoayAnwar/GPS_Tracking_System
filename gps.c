@@ -13,6 +13,11 @@
 typedef struct {
 	char buffer[80]; 
 	char data_start[20];
+	long double current_lat;
+	long double current_lon;
+	long double prev_lat;
+	long double prev_lon;
+	unsigned int total_distance;
 } gps_data;	
 
              
@@ -20,17 +25,16 @@ gps_data data;
 
 
 
-char *ptr;
+//char *ptr;
 
 long double get_latitude(unsigned char lat_pointer);
-unsigned int compute_lat_lon();
+void compute_lat_lon();
 long double get_longitude(unsigned char lat_pointer);
-double get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon);
+long double get_distance();
+bool first = true;
 
-
-void read_gps_data(char lat_buffer_[])
+void read_gps_data()
 {
-		unsigned int total_distance = 0;
 		//gps_data data;
 		long double a;
 		char received_char;		
@@ -44,7 +48,7 @@ void read_gps_data(char lat_buffer_[])
 		 data.buffer[2] = '3';
 		 data.buffer[3] = '4';
 		 data.buffer[4] = ',';
-		 data.buffer[5] = 'a';
+		 data.buffer[5] = 'N';
 		 data.buffer[6] = 'n';
 		 data.buffer[7] = 'w';
 		 data.buffer[8] = 'a';
@@ -52,19 +56,12 @@ void read_gps_data(char lat_buffer_[])
 		data.data_start[0] =0;
 		data.data_start[2] =0;
 
-		lat_buffer_[0] = '1';
-		 lat_buffer_[1] = '2';
-		 lat_buffer_[2] = '3';
-		 lat_buffer_[3] = '4';
-		 lat_buffer_[4] = '\0';
-
-		a = strtold(lat_buffer_, &ptr);
 
     is_GGA = 0;
     do {
         //received_char = ReadData_UART0();
-				//received_char = ReadData();
-				received_char = '$';
+				received_char = ReadData();
+				//received_char = '$';
         if (received_char == '$') {           
             buffer_index = 0;
             is_GGA = 0;
@@ -89,43 +86,36 @@ void read_gps_data(char lat_buffer_[])
             GGA[1] = GGA[2];
             GGA[2] = received_char;
         }
-    } while (received_char != '$');
-		total_distance = compute_lat_lon();
+    } while (CommaCounter != 13);
+		compute_lat_lon();
 }
 
 //****************** compute lat and lon from gps *********
-unsigned int compute_lat_lon() {
-	long double current_lon;
-	long double current_lat;
-	long double prev_lon;
-	long double prev_lat;
+void compute_lat_lon() {
 	long double distance;
-	bool first = true;
-	unsigned int total_distance = 0;
  	unsigned char data_begin = data.data_start[0];
 	char ay = data.buffer[0];
-	current_lat = get_latitude(data_begin);
+	data.current_lat = get_latitude(data_begin);
 	data_begin = data.data_start[2];
-	//current_lon = get_longitude (buffer, data_begin);
+	data.current_lon = get_longitude (data_begin);
 	
 	
-	//if (first) {
-		//prev_lat = current_lat;
-		//prev_lon = current_lon;
-		//first = false;
-	//}
+	if (first) {
+		data.prev_lat = data.current_lat;
+		data.prev_lon = data.current_lon;
+		first = false;
+	}
 	
-	//distance = get_distance (current_lat, current_lon, prev_lat, prev_lon);
+	distance = get_distance();
 	// to convert distance ftom Mile to KM
-	//distance = distance * 1.609344;
+	distance = distance * 1.609344;
 	// to convert distance from KM to Meter
-	//distance = distance / 1000;
-	//total_distance += distance;
+	distance = distance / 1000;
+	data.total_distance += distance;
 	
-	//prev_lat = current_lat;
-	//prev_lon = current_lon;
+	data.prev_lat = data.current_lat;
+	data.prev_lon = data.current_lon;
 	
-	return total_distance;
 }
 
 // ***************** get latitude value ******************
@@ -143,12 +133,11 @@ long double get_latitude(unsigned char lat_pointer)
         index++;
     }
     lat_index++;
-		lat_buffer[index] = '\0';
     is_N_or_S = data.buffer[lat_index];
-    //latitude = strtold(lat_buffer, &ptr); 
-		//if (is_N_or_S == 'S') {
-			//latitude *= -1;
-		//}
+    latitude = strtold(lat_buffer, &ptr); 
+		if (is_N_or_S == 'S') {
+			latitude *= -1;
+		}
 		return latitude;
 }
 
@@ -158,13 +147,12 @@ long double get_longitude(unsigned char lon_pointer)
 		char *ptr;
 		unsigned char is_E_or_W;
     unsigned char lon_index = lon_pointer + 1;
-    unsigned char index;       
+    unsigned char index = 0;       
     char long_buffer[15];
     float longitude;
-    lon_index = 0;
    // memset(long_buffer, 0, 15);
-    for (; data.buffer[lon_pointer] != ','; lon_pointer++) {
-        long_buffer[index] = data.buffer[lon_pointer];
+    for (; data.buffer[lon_index] != ','; lon_index++) {
+        long_buffer[index] = data.buffer[lon_index];
         index++;
     }
     lon_index++;
@@ -186,14 +174,14 @@ double rad_to_degree(double rad) {
     return rad= (rad * 180 / pi);
 }
 
-double get_distance(double current_lat, double current_lon, double prev_lat, double prev_lon) {
-    double theta, distance;
-    if ((current_lat == prev_lat) && (current_lon == prev_lon)) {
+long double get_distance() {
+    long double theta, distance;
+    if ((data.current_lat == data.prev_lat) && (data.current_lon == data.prev_lon)) {
         return 0;
     }
     else {
-        theta = current_lon - prev_lon;
-        distance = sin(degree_to_rad(current_lat)) * sin(degree_to_rad(prev_lat)) + cos(degree_to_rad(current_lat)) * cos(degree_to_rad(prev_lat)) * cos(degree_to_rad(theta));
+        theta = data.current_lon - data.prev_lon;
+        distance = sin(degree_to_rad(data.current_lat)) * sin(degree_to_rad(data.prev_lat)) + cos(degree_to_rad(data.current_lat)) * cos(degree_to_rad(data.prev_lat)) * cos(degree_to_rad(theta));
         distance = acos(distance);
         distance = rad_to_degree(distance);
         distance = distance * 60 * 1.1515;
