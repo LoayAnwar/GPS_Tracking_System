@@ -31,7 +31,11 @@ LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
 UART1.h(10): warning:  #1-D: last line of file ends without a newline
   #endif
-main.c: 6 warnings, 0 errors
+main.c(57): warning:  #223-D: function "read_gps_data" declared implicitly
+                read_gps_data();
+main.c(41): warning:  #177-D: variable "lat_buffer_" was declared but never referenced
+        char lat_buffer_[15];
+main.c: 8 warnings, 0 errors
 compiling sysTick.c...
 sysTick.c(28): warning:  #1-D: last line of file ends without a newline
   }
@@ -44,6 +48,22 @@ LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
 UART1.c(59): warning:  #1-D: last line of file ends without a newline
   }
 UART1.c: 3 warnings, 0 errors
+compiling gps.c...
+UART1.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+LCD_DRIVER.h(4): warning:  #1295-D: Deprecated declaration Lcd_init - give arg types
+  void Lcd_init();
+LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+gps.c(31): warning:  #1295-D: Deprecated declaration compute_lat_lon - give arg types
+  void compute_lat_lon();
+gps.c(33): warning:  #1295-D: Deprecated declaration get_distance - give arg types
+  long double get_distance();
+gps.c(39): warning:  #177-D: variable "a" was declared but never referenced
+                long double a;
+gps.c(97): warning:  #177-D: variable "ay" was declared but never referenced
+        char ay = data.buffer[0];
+gps.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=8016 RO-data=456 RW-data=24 ZI-data=1048  
-".\Gps_Tracking_System.axf" - 0 Error(s), 13 Warning(s).
+Program Size: Code=15072 RO-data=856 RW-data=4 ZI-data=1268  
+".\Gps_Tracking_System.axf" - 0 Error(s), 22 Warning(s).

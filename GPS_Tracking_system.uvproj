@@ -465,6 +465,11 @@
               <FileType>5</FileType>
               <FilePath>.\UART1.h</FilePath>
             </File>
+            <File>
+              <FileName>gps.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\gps.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

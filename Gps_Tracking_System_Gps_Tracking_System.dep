@@ -1,12 +1,12 @@
 Dependencies for Project 'Gps_Tracking_System', Target 'Gps_Tracking_System': (DO NOT MODIFY !)
-F (.\startup.s)(0x60C4BA6F)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\startup.s)(0x60C4CEB1)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
 F (.\DIO_DRIVER.c)(0x60C4BAD7)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\dio_driver.o --omf_browse .\dio_driver.crf --depend .\dio_driver.d)
 I (tm4c123gh6pm.h)(0x60BA6A70)
 F (.\LCD_DRIVER.c)(0x60C3CC8B)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\lcd_driver.o --omf_browse .\lcd_driver.crf --depend .\lcd_driver.d)
 I (tm4c123gh6pm.h)(0x60BA6A70)
 I (DIO_DRIVER.h)(0x60C49846)
 I (sysTick.h)(0x60BD3421)
-F (.\main.c)(0x60C4BC85)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+F (.\main.c)(0x60C4C46F)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\main.o --omf_browse .\main.crf --depend .\main.d)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C819B4)
 I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
@@ -20,8 +20,17 @@ F (.\UART1.c)(0x60C3D826)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --
 I (tm4c123gh6pm.h)(0x60BA6A70)
 I (LCD_DRIVER.h)(0x60BD3421)
 F (.\DIO_DRIVER.h)(0x60C49846)()
-F (.\gps.h)(0x60C4B414)()
+F (.\gps.h)(0x60C4C472)()
 F (.\LCD_DRIVER.h)(0x60BD3421)()
 F (.\sysTick.h)(0x60BD3421)()
 F (.\tm4c123gh6pm.h)(0x60BA6A70)()
 F (.\UART1.h)(0x60C3CC8B)()
+F (.\gps.c)(0x60C4CC01)(-c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\gps.o --omf_browse .\gps.crf --depend .\gps.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C819B4)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C819B4)
+I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C819B4)
+I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
+I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
+I (C:\Keil\ARM\ARMCC\include\math.h)(0x51C819B4)
+I (UART1.h)(0x60C3CC8B)
+I (LCD_DRIVER.h)(0x60BD3421)
