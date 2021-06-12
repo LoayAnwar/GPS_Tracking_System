@@ -406,19 +406,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>startup_TM4C123.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\startup_TM4C123.s</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>gps.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\gps.c</FilePath>
             </File>
             <File>
               <FileName>sysTick.c</FileName>
@@ -464,6 +454,11 @@
               <FileName>UART1.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\UART1.h</FilePath>
+            </File>
+            <File>
+              <FileName>startup.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\startup.s</FilePath>
             </File>
           </Files>
         </Group>
