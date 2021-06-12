@@ -3,11 +3,21 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\Dell\Documents\GitHub\GPS_Tracking_System\GPS_Tracking_system.uvproj
+C:\Users\Dell\Documents\GitHub\GPS_Tracking_System\Gps_Tracking_System.uvproj
 Project File Date:  06/12/2021
 
 <h2>Output:</h2>
-Rebuild target 'Target 1'
+Rebuild target 'Gps_Tracking_System'
+assembling startup.s...
+compiling DIO_DRIVER.c...
+compiling LCD_DRIVER.c...
+DIO_DRIVER.h(8): warning:  #1295-D: Deprecated declaration porta_init_output - give arg types
+  void porta_init_output();
+DIO_DRIVER.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+sysTick.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+LCD_DRIVER.c: 3 warnings, 0 errors
 compiling main.c...
 DIO_DRIVER.h(8): warning:  #1295-D: Deprecated declaration porta_init_output - give arg types
   void porta_init_output();
@@ -34,75 +44,6 @@ LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
 UART1.c(59): warning:  #1-D: last line of file ends without a newline
   }
 UART1.c: 3 warnings, 0 errors
-compiling DIO_DRIVER.c...
-compiling LCD_DRIVER.c...
-DIO_DRIVER.h(8): warning:  #1295-D: Deprecated declaration porta_init_output - give arg types
-  void porta_init_output();
-DIO_DRIVER.h(11): warning:  #1-D: last line of file ends without a newline
-  #endif
-sysTick.h(9): warning:  #1-D: last line of file ends without a newline
-  #endif
-LCD_DRIVER.c: 3 warnings, 0 errors
-assembling startup.s...
 linking...
-Program Size: Code=8744 RO-data=456 RW-data=24 ZI-data=1048  
-".\GPS_Tracking_system.axf" - 0 Error(s), 13 Warning(s).
-</pre>
-</body>
-</html>
-), 13 Warning(s).
-Target not created
- "prev_lat" was declared but never referenced
-        long double prev_lat;
-gps.c(102): warning:  #177-D: variable "distance" was declared but never referenced
-        long double distance;
-gps.c(103): warning:  #177-D: variable "first" was declared but never referenced
-        bool first = true;
-gps.c(106): warning:  #177-D: variable "ay" was declared but never referenced
-        char ay = data.buffer[0];
-gps.c(134): warning:  #177-D: variable "ptr" was declared but never referenced
-                char *ptr;
-gps.c(135): warning:  #550-D: variable "is_N_or_S" was set but never used
-                unsigned char is_N_or_S;
-gps.c(138): warning:  #550-D: variable "lat_buffer" was set but never used
-      char lat_buffer[15];
-gps.c: 16 warnings, 0 errors
-compiling sysTick.c...
-sysTick.c(28): warning:  #1-D: last line of file ends without a newline
-  }
-sysTick.c: 1 warning, 0 errors
-compiling UART1.c...
-LCD_DRIVER.h(4): warning:  #1295-D: Deprecated declaration Lcd_init - give arg types
-  void Lcd_init();
-LCD_DRIVER.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-UART1.c(59): warning:  #1-D: last line of file ends without a newline
-  }
-UART1.c: 3 warnings, 0 errors
-compiling DIO_DRIVER.c...
-compiling LCD_DRIVER.c...
-DIO_DRIVER.h(8): warning:  #1295-D: Deprecated declaration porta_init_output - give arg types
-  void porta_init_output();
-DIO_DRIVER.h(11): warning:  #1-D: last line of file ends without a newline
-  #endif
-sysTick.h(9): warning:  #1-D: last line of file ends without a newline
-  #endif
-LCD_DRIVER.c: 3 warnings, 0 errors
-linking...
-.\GPS_Tracking_system.axf: Error: L6200E: Symbol ptr multiply defined (by gps.o and main.o).
-Not enough information to list image symbols.
-Not enough information to list the image map.
-Finished: 2 information, 0 warning and 1 error messages.
-".\GPS_Tracking_system.axf" - 1 Error(s), 29 Warning(s).
-Target not created
-0Hz
-Connection failed!, error code=&d
-Error: Flash Download failed  -  Target DLL has been cancelled
-Load "C:\\Users\\Dell\\Documents\\GitHub\\GPS_Tracking_System\\GPS_Tracking_system.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Connection failed!, error code=&d
-Error: Flash Download failed  -  Target DLL has been cancelled
-Load "C:\\Users\\Dell\\Documents\\GitHub\\GPS_Tracking_System\\GPS_Tracking_system.axf" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Connection failed!, error code=&d
-Error: Flash Download failed  -  Target DLL has been cancelled
+Program Size: Code=8016 RO-data=456 RW-data=24 ZI-data=1048  
+".\Gps_Tracking_System.axf" - 0 Error(s), 13 Warning(s).
