@@ -8,19 +8,19 @@
 #include "LCD_DRIVER.h"
 #define buffer_size 80
 #define pi 3.14159265358979323846
-                      
+
 
 typedef struct {
-	char buffer[80]; 
+	char buffer[80];
 	char data_start[20];
 	long double current_lat;
 	long double current_lon;
 	long double prev_lat;
 	long double prev_lon;
 	float total_distance;
-} gps_data;	
+} gps_data;
 
-             
+
 gps_data data;
 
 
@@ -37,7 +37,7 @@ void read_gps_data()
 {
 		//gps_data data;
 		long double a;
-		char received_char;		
+		uint8_t received_char;
 	//received_char = ReadData_UART0();
 		uint8_t CommaCounter = 0;
 		volatile unsigned int buffer_index;
@@ -62,18 +62,18 @@ void read_gps_data()
     do {
         //received_char = ReadData_UART0();
 				received_char = ReadData();
-        if (received_char == '$') {           
+        if (received_char == '$') {
             buffer_index = 0;
             is_GGA = 0;
             CommaCounter = 0;
         }
         else if (is_GGA == 1)
-        {        
+        {
             if (received_char == ',')
 						{
-                data.data_start[CommaCounter++] = buffer_index;    
+                data.data_start[CommaCounter++] = buffer_index;
 						}
-						else 
+						else
 						{
 						}
             data.buffer[buffer_index++] = received_char;
@@ -107,14 +107,14 @@ void compute_lat_lon() {
 	data.current_lat = get_latitude(data_begin);
 	data_begin = data.data_start[2];
 	data.current_lon = get_longitude (data_begin);
-	
-	
+
+
 	if (first) {
 		data.prev_lat = data.current_lat;
 		data.prev_lon = data.current_lon;
 		first = false;
 	}
-	
+
 	distance = get_distance();
 	// to convert distance ftom Mile to KM
 	distance = distance * 1.609344;
@@ -123,7 +123,7 @@ void compute_lat_lon() {
 	data.total_distance += distance;
 	data.prev_lat = data.current_lat;
 	data.prev_lon = data.current_lon;
-	
+
 }
 
 // ***************** get latitude value ******************
@@ -131,7 +131,7 @@ long double get_latitude(unsigned char lat_pointer)
 {
 		char *ptr;
 		unsigned char is_N_or_S;
-    unsigned char lat_index = lat_pointer + 1;    
+    unsigned char lat_index = lat_pointer + 1;
     unsigned char index = 0;
     char lat_buffer[15];
     long double latitude;
@@ -142,7 +142,7 @@ long double get_latitude(unsigned char lat_pointer)
     }
     lat_index++;
     is_N_or_S = data.buffer[lat_index];
-    latitude = strtold(lat_buffer, &ptr); 
+    latitude = strtold(lat_buffer, &ptr);
 		if (is_N_or_S == 'S') {
 			latitude *= -1;
 		}
@@ -155,7 +155,7 @@ long double get_longitude(unsigned char lon_pointer)
 		char *ptr;
 		unsigned char is_E_or_W;
     unsigned char lon_index = lon_pointer + 1;
-    unsigned char index = 0;       
+    unsigned char index = 0;
     char long_buffer[15];
     float longitude;
    // memset(long_buffer, 0, 15);
@@ -169,7 +169,7 @@ long double get_longitude(unsigned char lon_pointer)
 		if (is_E_or_W == 'W') {
 			longitude *= -1;
 		}
-	return longitude;    
+	return longitude;
 }
 
 
@@ -196,5 +196,3 @@ long double get_distance() {
         return (distance);
     }
 }
-
-
