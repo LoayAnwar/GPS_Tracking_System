@@ -1,6 +1,9 @@
 #include "tm4c123gh6pm.h"
 #include "LCD_DRIVER.h"
-//activate U
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+char st[50];
 void UART2_Init(void){
 		SYSCTL_RCGCUART_R |= 0x00000004;    //activate uart2
 		SYSCTL_RCGCGPIO_R |= 0x00000008;		//activate port D
@@ -27,4 +30,19 @@ uint8_t ReadData_uart2(void){
 void SendData_UART2(char data){
     while((UART2_FR_R &0x0020) != 0);
 		UART2_DR_R= data;
+}
+
+
+void sendString_Uart2(char* string)
+{
+	while(*string)
+	{
+		SendData_UART2(*(string++));
+	}
+}
+
+void senddouble_Uart2(long double num)
+{
+		sprintf(st ,"%.14Lf" ,num );
+		sendString_Uart2(st);
 }
