@@ -2,7 +2,7 @@
 #include "LCD_DRIVER.h"
 //activate U
 void UART_Init(void){
-			SYSCTL_RCGCUART_R |= 0x00000002;    
+		SYSCTL_RCGCUART_R |= 0x00000002;    
 		SYSCTL_RCGCGPIO_R |= 0x00000004;		//activate port C
 		UART1_CTL_R &= ~0x00000001;					//disable UART
 		UART1_IBRD_R = 104;			
