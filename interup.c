@@ -2,6 +2,7 @@
 #include "tm4c123gh6pm.h"
 #include "DIO_DRIVER.h"
 #include "gps.h"
+#include <stdbool.h>
 
 void EnableInterrupts();
 
@@ -23,16 +24,26 @@ EnableInterrupts(); // (i) Enable global Interrupt flag (I)
 
 void GPIOPortF_Handler(void){
   int input;
+	bool flag;
+	int led;
+	led = 0x02;
+	
+	
 	input = Portf_input();
+
 	if((input & 0x01) == 0){
-	      while (1) 
-	{	
-		read_gps_data();	
-	}
+		flag = true;
+		while (flag) 
+		{	
+			read_gps_data();	
+		}
 	
 	}
 
 	else if ((input & 0x10) == 0) {
-		Portf_output(0x02);
+		flag = false; 
+		
+		led ^= 0x02;
+		Portf_output(led);
 	}
 }

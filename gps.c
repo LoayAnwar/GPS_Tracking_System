@@ -190,16 +190,14 @@ void compute_lat_lon() {
 			temp_2 = data.current_lat - (temp * 100);
 			temp_2 = temp_2 / 60;
 			data.current_lat = temp + temp_2;
-			senddouble_Uart2(data.current_lat);
-			SendData_UART2(',');
+			
 			data_begin = data.data_start[2];
 			data.current_lon = get_longitude (data_begin);
 			temp = data.current_lon / 100;
 			temp_2 = data.current_lon - (temp * 100);
 			temp_2 /= 60;
 			data.current_lon = temp + temp_2;
-			senddouble_Uart2(data.current_lon);
-			SendData_UART2(',');
+			
 
 			if (first) {
 				data.prev_lat = data.current_lat;
@@ -207,9 +205,14 @@ void compute_lat_lon() {
 				first = false;
 			}
 
-			
-			distance = distanceBetween();
-			data.total_distance += distance;
+			if (speed > 1.5){
+				distance = distanceBetween();
+				data.total_distance += distance;
+				senddouble_Uart2(data.current_lat);
+				SendData_UART2(',');
+				senddouble_Uart2(data.current_lon);
+				SendData_UART2(',');
+			}
 			data.prev_lat = data.current_lat;
 			data.prev_lon = data.current_lon;
 		//}
