@@ -44,7 +44,7 @@ void read_gps_data()
 		volatile unsigned int buffer_index;
 		uint8_t  is_GGA = 0;
 		char GGA[3];
-	char total_distance_in_string[6];
+	  char total_distance_in_string[6];
 		 //data.buffer[0] = '1';
 		// data.buffer[1] = '2';
 		// data.buffer[2] = '3';
@@ -74,9 +74,6 @@ void read_gps_data()
 						{
                 data.data_start[CommaCounter++] = buffer_index;
 						}
-						else
-						{
-						}
             data.buffer[buffer_index++] = received_char;
         }
         else if (GGA[0] == 'G' && GGA[1] == 'G' && GGA[2] == 'A')
@@ -93,7 +90,7 @@ void read_gps_data()
             GGA[2] = received_char;
         }
     } while (CommaCounter != 13);
-		SendData_UART0('!');
+		//SendData_UART0('!');
 		compute_lat_lon();
 		sprintf(total_distance_in_string, "%f", data.total_distance);
 		LCD_WriteCommand(1);
@@ -105,36 +102,42 @@ void compute_lat_lon() {
 	int temp;
 	long double temp_2;
 	long double distance;
+	char valid_bit_index;
+	char valid_bit;
  	unsigned char data_begin = data.data_start[0];
-	char ay = data.buffer[0];
-	data.current_lat = get_latitude(data_begin);
-	temp = data.current_lat/100;
-	temp_2 = data.current_lat - (temp * 100);
-	temp_2 = temp_2 / 60;
-	data.current_lat = temp + temp_2;
-	data_begin = data.data_start[2];
-	data.current_lon = get_longitude (data_begin);
-	temp = data.current_lon / 100;
-	temp_2 = data.current_lon - (temp * 100);
-	temp_2 /= 60;
-	data.current_lon = temp + temp_2;
+	valid_bit_index = data.data_start[4];
+	valid_bit_index++;
+	valid_bit = data.buffer[valid_bit_index];
+	if (valid_bit == '1') {
+		data.current_lat = get_latitude(data_begin);
+		temp = data.current_lat/100;
+		temp_2 = data.current_lat - (temp * 100);
+		temp_2 = temp_2 / 60;
+		data.current_lat = temp + temp_2;
+		data_begin = data.data_start[2];
+		data.current_lon = get_longitude (data_begin);
+		temp = data.current_lon / 100;
+		temp_2 = data.current_lon - (temp * 100);
+		temp_2 /= 60;
+		data.current_lon = temp + temp_2;
 
 
-	if (first) {
+		if (first) {
+			data.prev_lat = data.current_lat;
+			data.prev_lon = data.current_lon;
+			first = false;
+		}
+
+		//distance = get_distance();
+		distance = distanceBetween();
+		// to convert distance ftom Mile to KM
+		//distance = distance * 1.609344;
+		// to convert distance from KM to Meter
+		//distance = distance * 1000;
+		data.total_distance += distance;
 		data.prev_lat = data.current_lat;
 		data.prev_lon = data.current_lon;
-		first = false;
 	}
-
-	//distance = get_distance();
-	distance = distanceBetween();
-	// to convert distance ftom Mile to KM
-	//distance = distance * 1.609344;
-	// to convert distance from KM to Meter
-	//distance = distance * 1000;
-	data.total_distance += distance;
-	data.prev_lat = data.current_lat;
-	data.prev_lon = data.current_lon;
 
 }
 
