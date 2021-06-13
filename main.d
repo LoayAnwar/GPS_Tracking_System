@@ -8,4 +8,5 @@
 .\main.o: sysTick.h
 .\main.o: LCD_DRIVER.h
 .\main.o: UART1.h
-.\main.o: EEPROM.h
+.\main.o: uart2.h
+.\main.o: interup.h

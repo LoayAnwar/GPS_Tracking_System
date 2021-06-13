@@ -184,13 +184,14 @@ void compute_lat_lon() {
 		//LCD_WriteCommand(1);
 		//LCD_DisplayString(total_distance_in_string);
 		//LCD_DisplayString("-");
-		if (speed > 1.5){
+		//if (speed > 1.5){
 			data.current_lat = get_latitude(data_begin);
 			temp = data.current_lat/100;
 			temp_2 = data.current_lat - (temp * 100);
 			temp_2 = temp_2 / 60;
 			data.current_lat = temp + temp_2;
 			senddouble_Uart2(data.current_lat);
+			SendData_UART2(',');
 			data_begin = data.data_start[2];
 			data.current_lon = get_longitude (data_begin);
 			temp = data.current_lon / 100;
@@ -198,7 +199,7 @@ void compute_lat_lon() {
 			temp_2 /= 60;
 			data.current_lon = temp + temp_2;
 			senddouble_Uart2(data.current_lon);
-
+			SendData_UART2(',');
 
 			if (first) {
 				data.prev_lat = data.current_lat;
@@ -211,7 +212,7 @@ void compute_lat_lon() {
 			data.total_distance += distance;
 			data.prev_lat = data.current_lat;
 			data.prev_lon = data.current_lon;
-		}
+		//}
 	}
 
 }

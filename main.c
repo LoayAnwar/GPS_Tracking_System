@@ -7,8 +7,8 @@
 #include "sysTick.h"
 #include "LCD_DRIVER.h"
 #include "UART1.h"
-#include "EEPROM.h"
-
+#include "uart2.h"
+#include "interup.h"
 char total_distance_as_string[15];
 bool first_read = true;
 char NS ,EW ;
@@ -35,11 +35,10 @@ int main ()
 	Lcd_init();
 	UART_Init();
 	UART0_Init();
-	EEPROM_Init();
-
+	EdgeCounter_Init();
+	UART2_Init();
 while (1) 
 	{	
-	
 	}
 	
 }

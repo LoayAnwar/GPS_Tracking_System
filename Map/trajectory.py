@@ -1,11 +1,16 @@
 from branca import colormap
 import folium
 
-f = open("test2.txt", "r")
-reading= f.read().split(',')
+f = open("putty.txt", "r")
+read= f.read().split(',')
+reading= []
+for r in read:
+    reading.append(float(r))
+
 
 #Map object
 map_object = folium.Map(location=[reading[0], reading[1]], zoom_start=15)
+
 
 #Markers for start and end locations
 folium.Marker(location=[reading[0], reading[1]], icon=folium.Icon(color='red')).add_to(map_object),

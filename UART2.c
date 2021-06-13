@@ -11,14 +11,16 @@ void UART2_Init(void){
 		UART2_IBRD_R = 104;			
 		UART2_FBRD_R = 11;			
 		UART2_LCRH_R = 0x00000070; 			//8 bits, no parity bits, one stop, FIFOs 
-		UART2_CTL_R |= 0x00000301;			//enable UART 
+		UART2_CTL_R |= 0x00000301;
+	GPIO_PORTD_LOCK_R=0x4C4F434B;
+	GPIO_PORTD_CR_R |= 0XC0;	//enable UART 
 		GPIO_PORTD_AFSEL_R |= 0xC0;			//enable alternate fn on PORT D pins 6,7 & Rx & Tx
 		GPIO_PORTD_DEN_R |= 0xC0;
 		GPIO_PORTD_PCTL_R = (GPIO_PORTD_PCTL_R & 0x00FFFFFF) | 0x11000000;  
 		GPIO_PORTD_AMSEL_R &= ~0xC0;			//disable analog on PortD pins 6,7
 }
 
-uint8_t ReadData_uart2(void){
+char ReadData_uart2(void){
 	char data;
     while((UART2_FR_R &0x0010) != 0);
 	 data =((uint8_t)(UART2_DR_R & 0xFF));
