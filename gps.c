@@ -17,7 +17,7 @@ typedef struct {
 	long double current_lon;
 	long double prev_lat;
 	long double prev_lon;
-	float total_distance;
+	long double total_distance;
 } gps_data;
 
 
@@ -92,7 +92,7 @@ void read_gps_data()
     } while (CommaCounter != 13);
 		//SendData_UART0('!');
 		compute_lat_lon();
-		sprintf(total_distance_in_string, "%f", data.total_distance);
+		sprintf(total_distance_in_string, "%Lf", data.total_distance);
 		LCD_WriteCommand(1);
 		LCD_DisplayString(total_distance_in_string);
 }
@@ -236,15 +236,17 @@ double distanceBetween()
 	double slat2;
 	double clat2;
 	double denom;
+	long double lat1 = data.current_lat;
+	long double lat2 = data.prev_lat;
   delta = toRadians(data.current_lon-data.prev_lon);
   sdlong = sin(delta);
   cdlong = cos(delta);
-  data.current_lat = toRadians(data.current_lat);
-  data.prev_lat = toRadians(data.prev_lat);
-  slat1 = sin(data.current_lat);
-  clat1 = cos(data.current_lat);
-   slat2 = sin(data.prev_lat);
-  clat2 = cos(data.prev_lat);
+  lat1 = toRadians(lat1);
+  lat2 = toRadians(lat2);
+  slat1 = sin(lat1);
+  clat1 = cos(lat1);
+  slat2 = sin(lat2);
+  clat2 = cos(lat2);
   delta = (clat1 * slat2) - (slat1 * clat2 * cdlong);
   delta = (delta*delta);
   delta += ((clat2 * sdlong)*(clat2 * sdlong));
