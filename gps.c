@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "UART1.h"
+#include "uart2.h"
 #include "LCD_DRIVER.h"
 #define buffer_size 80
 #define pi 3.14159265358979323846
@@ -189,12 +190,14 @@ void compute_lat_lon() {
 			temp_2 = data.current_lat - (temp * 100);
 			temp_2 = temp_2 / 60;
 			data.current_lat = temp + temp_2;
+			senddouble_Uart2(data.current_lat);
 			data_begin = data.data_start[2];
 			data.current_lon = get_longitude (data_begin);
 			temp = data.current_lon / 100;
 			temp_2 = data.current_lon - (temp * 100);
 			temp_2 /= 60;
 			data.current_lon = temp + temp_2;
+			senddouble_Uart2(data.current_lon);
 
 
 			if (first) {
