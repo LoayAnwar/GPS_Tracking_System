@@ -3,6 +3,8 @@
 #include "DIO_DRIVER.h"
 #include "gps.h"
 #include <stdbool.h>
+//int led = 0x02;
+//int flag = 0x0;
 
 void EnableInterrupts();
 
@@ -22,28 +24,32 @@ NVIC_EN0_R = 0x40000000; // (h) enable interrupt 30 in NVIC
 EnableInterrupts(); // (i) Enable global Interrupt flag (I)
 }
 
+	
+
 void GPIOPortF_Handler(void){
   int input;
-	bool flag;
-	int led;
-	led = 0x02;
-	
+
+ 
 	
 	input = Portf_input();
 
-	if((input & 0x01) == 0){
-		flag = true;
+	/*if((input & 0x01) == 0){
 		while (flag) 
 		{	
 			read_gps_data();	
 		}
 	
-	}
+	}*/
 
-	else if ((input & 0x10) == 0) {
-		flag = false; 
+	 if ((input & 0x10) == 0) {
 		
-		led ^= 0x02;
-		Portf_output(led);
+		//Portf_output(led);
+		//led ^= 0x02;
+		//flag ^= 0x1; 
+		while (1) 
+		{	
+			read_gps_data();	
+		}
+		
 	}
 }

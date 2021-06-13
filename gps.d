@@ -8,3 +8,4 @@
 .\gps.o: UART1.h
 .\gps.o: uart2.h
 .\gps.o: LCD_DRIVER.h
+.\gps.o: DIO_DRIVER.h

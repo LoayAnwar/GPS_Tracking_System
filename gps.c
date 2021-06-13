@@ -7,6 +7,7 @@
 #include "UART1.h"
 #include "uart2.h"
 #include "LCD_DRIVER.h"
+#include "DIO_DRIVER.h"
 #define buffer_size 80
 #define pi 3.14159265358979323846
 
@@ -161,6 +162,10 @@ void read_gps_data()
 		sprintf(total_distance_in_string, "%Lf", data.total_distance);
 		LCD_WriteCommand(1);
 		LCD_DisplayString(total_distance_in_string);
+		if (data.total_distance > 100) {
+			Portf_output(0x02);
+			return;
+		}
 		//LCD_WriteCommand(1);
 }
 

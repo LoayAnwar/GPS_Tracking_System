@@ -38,7 +38,8 @@ int main ()
 	EdgeCounter_Init();
 	UART2_Init();
 while (1) 
-	{	
+	{
+			
 	}
 	
 }
