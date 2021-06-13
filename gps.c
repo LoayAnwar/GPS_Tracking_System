@@ -102,12 +102,22 @@ void read_gps_data()
 
 //****************** compute lat and lon from gps *********
 void compute_lat_lon() {
+	long double temp;
+	long double temp_2;
 	long double distance;
  	unsigned char data_begin = data.data_start[0];
 	char ay = data.buffer[0];
 	data.current_lat = get_latitude(data_begin);
+	temp = (int)data.current_lat/100;
+	temp_2 = data.current_lat - (temp * 100);
+	temp_2 = temp_2 / 60;
+	data.current_lat = temp + temp_2;
 	data_begin = data.data_start[2];
 	data.current_lon = get_longitude (data_begin);
+	temp = (int)data.current_lon / 100;
+	temp_2 = data.current_lon - (temp * 100);
+	temp_2 /= 60;
+	data.current_lon = temp + temp_2;
 
 
 	if (first) {
@@ -119,9 +129,9 @@ void compute_lat_lon() {
 	//distance = get_distance();
 	distance = distanceBetween();
 	// to convert distance ftom Mile to KM
-	distance = distance * 1.609344;
+	//distance = distance * 1.609344;
 	// to convert distance from KM to Meter
-	distance = distance * 1000;
+	//distance = distance * 1000;
 	data.total_distance += distance;
 	data.prev_lat = data.current_lat;
 	data.prev_lon = data.current_lon;
