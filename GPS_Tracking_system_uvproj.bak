@@ -470,6 +470,16 @@
               <FileType>1</FileType>
               <FilePath>.\gps.c</FilePath>
             </File>
+            <File>
+              <FileName>EEPROM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\EEPROM.c</FilePath>
+            </File>
+            <File>
+              <FileName>EEPROM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\EEPROM.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

@@ -36,10 +36,10 @@ int main ()
 	UART_Init();
 	UART0_Init();
 	EEPROM_Init();
-	// **************** Read data from gps and compute distance ***************
+
 while (1) 
 	{	
-		read_gps_data();	
+	
 	}
 	
 }

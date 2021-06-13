@@ -480,6 +480,11 @@
               <FileType>5</FileType>
               <FilePath>.\EEPROM.h</FilePath>
             </File>
+            <File>
+              <FileName>UART2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UART2.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

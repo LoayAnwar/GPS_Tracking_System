@@ -49,9 +49,49 @@ void read_gps_data()
 		char GGA[3];
 	  char VTG[3];
 	  char total_distance_in_string[6];
+	
+	int i;
 
-
-
+		/*data.buffer[0] = '$';
+		data.buffer[1] = 'G';
+	data.buffer[2] = 'P';
+		data.buffer[3] = 'V';
+	data.buffer[4] = 'T';
+	data.buffer[5] = 'G';
+	data.buffer[6] = ',';
+	data.buffer[7] = '3';
+	data.buffer[8] = '6';
+	data.buffer[9] = '0';
+	data.buffer[10] = '.';
+	data.buffer[11] = '0';
+	data.buffer[12] = ',';
+	data.buffer[13] = 'T';
+	data.buffer[14] = ',';
+	data.buffer[15] = '3';
+	data.buffer[16] = '4';
+	data.buffer[17] = '8';
+	data.buffer[18] = '.';
+	data.buffer[19] = '7';
+	data.buffer[20] = ',';
+	data.buffer[21] = 'M';
+	data.buffer[22] = ',';
+	data.buffer[23] = '0';
+	data.buffer[24] = '0';
+	data.buffer[25] = '0';
+	data.buffer[26] = '.';
+	data.buffer[27] = '0';
+	data.buffer[28] = ',';
+	data.buffer[29] = 'N';
+	data.buffer[30] = ',';
+	data.buffer[31] = '0';
+	data.buffer[32] = '1';
+	data.buffer[33] = '0';
+	data.buffer[34] = '.';
+	data.buffer[35] = '2';
+	data.buffer[36] = ',';
+	data.buffer[37] = 'K';
+	*/
+	i = 0;
     is_GGA = 0;
 	  is_VTG = 0;
     do {
@@ -86,6 +126,7 @@ void read_gps_data()
 		
 		    do {
 				received_char = ReadData();
+				//	received_char = data.buffer[i];
         if (received_char == '$') {
             buffer_index = 0;
             is_VTG = 0;
@@ -112,12 +153,14 @@ void read_gps_data()
             VTG[1] = VTG[2];
             VTG[2] = received_char;
         }
+				i++;
     } while (CommaCounter != 7);
 				
 		compute_lat_lon();
 		sprintf(total_distance_in_string, "%Lf", data.total_distance);
 		LCD_WriteCommand(1);
 		LCD_DisplayString(total_distance_in_string);
+		//LCD_WriteCommand(1);
 }
 
 //****************** compute lat and lon from gps *********
@@ -128,12 +171,18 @@ void compute_lat_lon() {
 	char valid_bit_index;
 	char valid_bit;
 	long double speed;
+	 char total_distance_in_string[6];
  	unsigned char data_begin = data.data_start[0];
 	valid_bit_index = data.data_start[4];
 	valid_bit_index++;
 	valid_bit = data.buffer[valid_bit_index];
+	//valid_bit = '1';
 	if (valid_bit == '1') {
-		speed = get_speed(data.buffer_speed[5]);
+		speed = get_speed(data.data_start_speed[5]);
+		//sprintf(total_distance_in_string, "%0.2Lf", speed);
+		//LCD_WriteCommand(1);
+		//LCD_DisplayString(total_distance_in_string);
+		//LCD_DisplayString("-");
 		if (speed > 1.5){
 			data.current_lat = get_latitude(data_begin);
 			temp = data.current_lat/100;
@@ -159,7 +208,7 @@ void compute_lat_lon() {
 			data.total_distance += distance;
 			data.prev_lat = data.current_lat;
 			data.prev_lon = data.current_lon;
-	}
+		}
 	}
 
 }
