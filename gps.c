@@ -13,6 +13,9 @@
 typedef struct {
 	char buffer[80];
 	char data_start[20];
+	char buffer_speed[80];
+	char data_start_speed[20];
+	long double speed;
 	long double current_lat;
 	long double current_lon;
 	long double prev_lat;
@@ -30,38 +33,28 @@ gps_data data;
 long double get_latitude(unsigned char lat_pointer);
 void compute_lat_lon();
 long double get_longitude(unsigned char lat_pointer);
+long double get_speed(unsigned char speed_pointer);
 long double get_distance();
 double distanceBetween();
 bool first = true;
 
 void read_gps_data()
 {
-		//gps_data data;
 		long double a;
 		uint8_t received_char;
-	//received_char = ReadData_UART0();
 		uint8_t CommaCounter = 0;
 		volatile unsigned int buffer_index;
 		uint8_t  is_GGA = 0;
+	  uint8_t  is_VTG = 0;
 		char GGA[3];
+	  char VTG[3];
 	  char total_distance_in_string[6];
-		 //data.buffer[0] = '1';
-		// data.buffer[1] = '2';
-		// data.buffer[2] = '3';
-		// data.buffer[3] = '4';
-		// data.buffer[4] = ',';
-		// data.buffer[5] = 'N';
-		// data.buffer[6] = 'n';
-		// data.buffer[7] = 'w';
-		// data.buffer[8] = 'a';
-		// data.buffer[9] = 'r';
-		//data.data_start[0] =0;
-		//data.data_start[2] =0;
+
 
 
     is_GGA = 0;
+	  is_VTG = 0;
     do {
-        //received_char = ReadData_UART0();
 				received_char = ReadData();
         if (received_char == '$') {
             buffer_index = 0;
@@ -90,7 +83,37 @@ void read_gps_data()
             GGA[2] = received_char;
         }
     } while (CommaCounter != 13);
-		//SendData_UART0('!');
+		
+		    do {
+				received_char = ReadData();
+        if (received_char == '$') {
+            buffer_index = 0;
+            is_VTG = 0;
+            CommaCounter = 0;
+        }
+        else if (is_VTG == 1)
+        {
+            if (received_char == ',')
+						{
+                data.data_start_speed[CommaCounter++] = buffer_index;
+						}
+            data.buffer_speed[buffer_index++] = received_char;
+        }
+        else if (VTG[0] == 'V' && VTG[1] == 'T' && VTG[2] == 'G')
+        {
+            is_VTG = 1;
+            VTG[0] = 0;
+            VTG[1] = 0;
+            VTG[2] = 0;
+        }
+        else
+        {
+            VTG[0] = VTG[1];
+            VTG[1] = VTG[2];
+            VTG[2] = received_char;
+        }
+    } while (CommaCounter != 7);
+				
 		compute_lat_lon();
 		sprintf(total_distance_in_string, "%Lf", data.total_distance);
 		LCD_WriteCommand(1);
@@ -104,39 +127,39 @@ void compute_lat_lon() {
 	long double distance;
 	char valid_bit_index;
 	char valid_bit;
+	long double speed;
  	unsigned char data_begin = data.data_start[0];
 	valid_bit_index = data.data_start[4];
 	valid_bit_index++;
 	valid_bit = data.buffer[valid_bit_index];
 	if (valid_bit == '1') {
-		data.current_lat = get_latitude(data_begin);
-		temp = data.current_lat/100;
-		temp_2 = data.current_lat - (temp * 100);
-		temp_2 = temp_2 / 60;
-		data.current_lat = temp + temp_2;
-		data_begin = data.data_start[2];
-		data.current_lon = get_longitude (data_begin);
-		temp = data.current_lon / 100;
-		temp_2 = data.current_lon - (temp * 100);
-		temp_2 /= 60;
-		data.current_lon = temp + temp_2;
+		speed = get_speed(data.buffer_speed[5]);
+		if (speed > 1.5){
+			data.current_lat = get_latitude(data_begin);
+			temp = data.current_lat/100;
+			temp_2 = data.current_lat - (temp * 100);
+			temp_2 = temp_2 / 60;
+			data.current_lat = temp + temp_2;
+			data_begin = data.data_start[2];
+			data.current_lon = get_longitude (data_begin);
+			temp = data.current_lon / 100;
+			temp_2 = data.current_lon - (temp * 100);
+			temp_2 /= 60;
+			data.current_lon = temp + temp_2;
 
 
-		if (first) {
+			if (first) {
+				data.prev_lat = data.current_lat;
+				data.prev_lon = data.current_lon;
+				first = false;
+			}
+
+			
+			distance = distanceBetween();
+			data.total_distance += distance;
 			data.prev_lat = data.current_lat;
 			data.prev_lon = data.current_lon;
-			first = false;
-		}
-
-		//distance = get_distance();
-		distance = distanceBetween();
-		// to convert distance ftom Mile to KM
-		//distance = distance * 1.609344;
-		// to convert distance from KM to Meter
-		//distance = distance * 1000;
-		data.total_distance += distance;
-		data.prev_lat = data.current_lat;
-		data.prev_lon = data.current_lon;
+	}
 	}
 
 }
@@ -150,7 +173,6 @@ long double get_latitude(unsigned char lat_pointer)
     unsigned char index = 0;
     char lat_buffer[15];
     long double latitude;
-   // memset(lat_buffer, 0, 15);
     for (; data.buffer[lat_index] != ','; lat_index++) {
         lat_buffer[index] = data.buffer[lat_index];
         index++;
@@ -172,8 +194,7 @@ long double get_longitude(unsigned char lon_pointer)
     unsigned char lon_index = lon_pointer + 1;
     unsigned char index = 0;
     char long_buffer[15];
-    float longitude;
-   // memset(long_buffer, 0, 15);
+    long double longitude;
     for (; data.buffer[lon_index] != ','; lon_index++) {
         long_buffer[index] = data.buffer[lon_index];
         index++;
@@ -187,6 +208,22 @@ long double get_longitude(unsigned char lon_pointer)
 	return longitude;
 }
 
+//****************** get speed ************************
+long double get_speed(unsigned char speed_pointer)
+{
+		char *ptr;
+    unsigned char speed_index = speed_pointer + 1;
+    unsigned char index = 0;
+    char speed_buffer[15];
+    long double speed;
+    for (; data.buffer_speed[speed_index] != ','; speed_index++) {
+        speed_buffer[index] = data.buffer_speed[speed_index];
+        index++;
+    }
+    speed_index++;
+    speed = strtold(speed_buffer, &ptr);
+	return speed;
+}
 
 //****************** compute distance **********************
 double degree_to_rad(double degree) {
